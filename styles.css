@@ -1,0 +1,565 @@
+/* Import de la police Google Fonts */
+@import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+/* Réinitialisation des styles par défaut */
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Styles pour le fond animé */
+body {
+
+  min-height: 100vh;
+  padding: 10px;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
+  background-size: 200% 200%;
+  animation: gradientAnimation 10s linear infinite alternate;
+}
+
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+
+/* Dans votre fichier styles.css */
+body {
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  color: #fff;
+  padding: 10px;
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.burger-menu {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 60px; /* Hauteur totale des trois barres */
+}
+
+.bar {
+  background-color: #fff;
+  width: 100%;
+  height: 3px;
+  margin: 3px 0;
+  transition: 0.4s;
+  display: ; /* Assurer que les spans se comportent comme des blocs */
+}
+
+/* Styles pour le menu burger actif */
+.burger-menu.active .bar:nth-child(1) {
+  transform: translateY(5px) rotate(45deg);
+}
+
+.burger-menu.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.burger-menu.active .bar:nth-child(3) {
+  transform: translateY(-5px) rotate(-45deg);
+}
+
+.sidebar {
+  background: rgba(255, 255, 255, 0.2); /* Couleur de fond transparente */
+  backdrop-filter: blur(10px); /* Effet de flou pour le verre */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  color: #fff;
+  width: 250px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: -250px; /* Caché initialement à gauche */
+  transition: 0.4s;
+}
+
+.sidebar.active {
+  left: 0; /* Afficher la barre latérale lorsque active */
+}
+
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  padding: 10px;
+}
+
+.sidebar a {
+  font-size: 25px;
+  color: #fff;
+  text-decoration: none;
+}
+
+
+/* Styles pour le conteneur du formulaire */
+.container {
+  max-width: 800px;
+  background: #fff;
+  position: relative;
+  overflow: hidden;
+  width: 800px;
+  padding: 25px 40px 10px 40px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid transparent;
+  position: absolute;
+  top: 50%; /* Position verticale au milieu de la page */
+  left: 50%; /* Position horizontale au milieu de la page */
+  transform: translate(-50%, -50%); /* Centrer le contenu */
+  overflow: hidden;
+}
+
+
+
+.container .text {
+  text-align: center;
+  font-size: 41px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  background: -webkit-linear-gradient(right, #56d8e4, #9f01ea, #56d8e4, #9f01ea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.container form {
+  padding: 30px 0 0 0;
+}
+
+/* Styles pour les champs de formulaire */
+.container form .form-row {
+  display: flex;
+  margin: 32px 0;
+}
+
+form .form-row .input-data {
+  width: 100%;
+  height: 40px;
+  margin: 0 20px;
+  position: relative;
+}
+
+.input-data input,
+.textarea textarea {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 17px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.12);
+}
+
+.input-data input:focus ~ label,
+.textarea textarea:focus ~ label,
+.input-data input:valid ~ label,
+.textarea textarea:valid ~ label {
+  transform: translateY(-20px);
+  font-size: 14px;
+  color: #3498db;
+}
+
+.textarea textarea {
+  resize: none;
+  padding-top: 10px;
+}
+
+.input-data label {
+  position: absolute;
+  pointer-events: none;
+  bottom: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+}
+
+.textarea label {
+  width: 100%;
+  bottom: 40px;
+  background: #fff;
+}
+
+.input-data .underline {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+}
+
+.input-data .underline:before {
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  background: #3498db;
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.3s ease;
+}
+
+.input-data input:focus ~ .underline:before,
+.input-data input:valid ~ .underline:before,
+.textarea textarea:focus ~ .underline:before,
+.textarea textarea:valid ~ .underline:before {
+  transform: scale(1);
+}
+
+
+
+/* CSS */
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(0, 0, 0);
+  background: #ffffff;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.btn {
+  --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+  --border-width: .125em;
+  --curve-size: .5em;
+  --blur: 30px;
+  --bg: #080312;
+  --color: #afffff;
+  color: var(--color);
+    /* use position: relative; so that BG is only for .btn */
+  position: relative;
+  isolation: isolate;
+  display: inline-grid;
+  place-content: center;
+  padding: .5em 1.5em;
+  font-size: 17px;
+  border: 0;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
+  clip-path: polygon(
+            /* Top-left */
+            0% var(--curve-size),
+
+            var(--curve-size) 0,
+            /* top-right */
+            100% 0,
+            100% calc(100% - var(--curve-size)),
+
+            /* bottom-right 1 */
+            calc(100% - var(--curve-size)) 100%,
+            /* bottom-right 2 */
+            0 100%);
+  transition: color 250ms;
+}
+
+.btn::after,
+.btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.btn::before {
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes move-bg7234 {
+  0% {
+    background-position: 31% 0%
+  }
+
+  50% {
+    background-position: 70% 100%
+  }
+
+  100% {
+    background-position: 31% 0%
+  }
+}
+
+.btn::after {
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+            /* Top-left */
+            var(--border-width) 
+            calc(var(--curve-size) + var(--border-width) * .5),
+
+            calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
+
+            /* top-right */
+            calc(100% - var(--border-width)) 
+            var(--border-width),
+
+            calc(100% - var(--border-width)) 
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+
+            /* bottom-right 1 */
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
+            /* bottom-right 2 */
+            var(--border-width) calc(100% - var(--border-width)));
+  transition: clip-path 500ms;
+}
+
+.btn:where(:hover, :focus)::after {
+  clip-path: polygon(
+                /* Top-left */
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    
+                calc(100% - var(--border-width))
+
+                var(--border-width),
+    
+                /* top-right */
+                calc(100% - var(--border-width))
+
+                 var(--border-width),
+    
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+    
+                /* bottom-right 1 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) 
+                calc(100% - var(--border-width)),
+
+                /* bottom-right 2 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+                calc(100% - var(--border-width)));
+  transition: 200ms;
+}
+
+.btn:where(:hover, :focus) {
+  color: #fff;
+}
+
+
+
+
+
+
+
+  .index {
+    background: rgba(255, 255, 255, 0.2); /* Couleur de fond transparente */
+    backdrop-filter: blur(10px); /* Effet de flou pour le verre */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  padding: 20px;
+  border-radius: 10px;
+   max-width: 600px; /* Pour limiter la largeur du conteneur */
+  margin: 200px auto; /* Pour centrer le conteneur */
+          }
+/* Styles pour le titre */
+#features-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+/* Styles pour le paragraphe d'introduction */
+#features-intro {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+/* Styles pour la liste des fonctionnalités */
+#feature-list {
+  list-style-type: disc;
+  margin-left: 20px;
+  text-align: left;
+}
+
+#feature-list li {
+  font-size: 16px;
+  color: #ffffff;
+  margin-bottom: 10px;
+}
+
+/* Styles pour le paragraphe de conclusion */
+#features-outro {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+}
+
+
+/* Styles pour le conteneur */
+#table {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 80%; /* Largeur du conteneur */
+  margin: 0 auto; /* Centrer le conteneur horizontalement */
+  padding: 20px;
+  background: white;
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure avec transparence */
+  border-radius: 10px; /* Coins arrondis */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  backdrop-filter: blur(10px); /* Flou du fond pour effet de verre */
+  text-align: center; /* Centrer le contenu à l'intérieur du conteneur */
+}
+
+/* Styles pour la table */
+#table {
+  width: 40%;
+  border-collapse: collapse;
+  background: transparent;
+  text-align: left; /* Aligner le texte à gauche dans la table */
+}
+
+/* Styles pour les cellules de la table */
+th, td {
+  padding: 8px;
+  text-align: center; /* Centrer le texte à l'intérieur des cellules */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Bordure inférieure avec transparence */
+}
+
+/* Styles pour les en-têtes de colonne */
+th {
+  background: rgba(255, 255, 255, 0.2); /* Fond de l'en-tête avec transparence */
+  font-weight: bold;
+}
+
+
+
+input[type="submit"] {
+  padding: 5px 10px;
+  background: rgba(255, 0, 0, 0.7); /* Couleur de fond rouge avec transparence */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+input[type="submit"]:hover {
+  background: rgba(255, 0, 0, 1); /* Couleur de fond rouge plus intense au survol */
+}
+
+/*player */
+
+
+
+.music-player {
+  max-width: 300px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.player-controls {
+  margin-top: 10px;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  margin: 5px;
+  cursor: pointer;
+}
+
+.progress-bar {
+  height: 5px;
+  background-color: #ccc;
+  margin-top: 10px;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background-color: #007BFF;
+}
+
+.track-info {
+  margin-top: 10px;
+}
+
+#current-time, #duration {
+  font-weight: bold;
+}
