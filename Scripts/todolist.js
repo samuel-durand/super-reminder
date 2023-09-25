@@ -25,9 +25,6 @@ const getTasks = () => {
             const editBtns = document.querySelectorAll('.edit-btn');
             const deleteBtns = document.querySelectorAll('.delete-btn');
 
-            console.log(editBtns)
-            console.log(deleteBtns)
-
             editBtns.forEach(btn => {
                 btn.addEventListener('click', () => {
                     console.log(btn.value)
@@ -41,7 +38,7 @@ const getTasks = () => {
         })
 };
 
-
+// edition d'une tâche
 const editTask = (id) => {
 
 };
@@ -57,9 +54,28 @@ const deleteTask = (id) => {
     .then(() => getTasks())
 };
 
+// Ajout d'une tâche
+const addTask = () => {
+    const name = document.querySelector('#name').value;
+    const description = document.querySelector('#description').value;
+
+    fetch("./Route/addTask.php", {
+        method: "POST",
+        body: JSON.stringify({
+            name: name,
+            description: description
+        })
+    })
+    .then(() => getTasks())
+};
+
 document.addEventListener('DOMContentLoaded', function() {
 
     getTasks();
 
-
+    const addBtn = document.querySelector('#add-btn');
+    addBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        addTask();
+    })
 });
