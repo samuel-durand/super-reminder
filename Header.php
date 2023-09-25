@@ -8,7 +8,6 @@
 
 <nav class="sidebar" id="sidebar">
     <ul>
-        <li><a href="Index.php">Accueil</a></li>
         <?php
         // Vérifiez si l'utilisateur est connecté
         if (isset($_SESSION['user_id'])) {
@@ -24,6 +23,7 @@
             }
 
             // Affichez également les liens du profil et de déconnexion
+            echo '<li><a href="index.php">Acceuil</a></li>';
             echo '<li><a href="profil.php">Profil</a></li>';
             echo '<li><a href="logout.php">Déconnexion</a></li>';
         } else {
