@@ -9,6 +9,9 @@
 <nav class="sidebar" id="sidebar">
     <ul>
         <?php
+
+        require_once './Class/User.php';
+
         // Vérifiez si l'utilisateur est connecté
         if (isset($_SESSION['user_id'])) {
             // Si connecté, récupérez l'information sur l'utilisateur (y compris le statut administrateur)
@@ -25,6 +28,7 @@
             // Affichez également les liens du profil et de déconnexion
             echo '<li><a href="index.php">Acceuil</a></li>';
             echo '<li><a href="profil.php">Profil</a></li>';
+            echo '<li><a href="todolist.php">Todo List</a></li>';
             echo '<li><a href="logout.php">Déconnexion</a></li>';
         } else {
             // Si non connecté, affichez le lien de connexion et d'inscription
