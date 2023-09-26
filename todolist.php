@@ -11,7 +11,7 @@
         $task = $taskCrud->createTask($name, $description, $user_id);
 
         if($task){
-            var_dump($task);
+            
         }else{
             $errorMessage = "Une erreur s'est produite lors de l'ajout de la tache.";
         }
@@ -26,7 +26,6 @@
     <title>Ajout de tache</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
     <link rel="stylesheet" type="text/css" href="styles.css">
-
 </head>
 <body>
     <?php include('Header.php');?>
@@ -52,14 +51,14 @@
             <div class="form-row">
                 <div class="input-data">
                     <input type="date" id="date" name="date" placeholder="Description">
-                    <label for="description">Date :</label>
+                    <label for="description">Date de fin :</label>
                     <div class="underline"></div>
                 </div>
             </div>
             <div class="form-row">
                 <div class="submit-btn">
                     <div class="input-data">
-                        <button type="submit" class="button-85" role="button">Ajouter</button>
+                        <button type="button" id="add-btn" class="button-85" role="button">Ajouter</button>
                         <div class="inner"></div>
                     </div>
                 </div>
@@ -72,5 +71,9 @@
             }
         ?>
     </div>
+    <div class="tasks-container">
+
+    </div>
+
 </body>
 </html>
