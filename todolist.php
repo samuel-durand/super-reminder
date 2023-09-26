@@ -12,10 +12,11 @@
     <title>Ajout de tache</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="./Scripts/todolist.js"></script>
 </head>
 <body>
     <?php include('Header.php');?>
+    <script  src="script.js"></script>
+
     <script src="menu.js"></script>
     <div class="container">
         <form method="post" id="task-form" class="gradient-border">
