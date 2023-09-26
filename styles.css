@@ -1,3 +1,6 @@
+
+
+
 /* Import de la police Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
@@ -13,8 +16,6 @@
 /* Styles pour le fond animé */
 body {
 
-  min-height: 100vh;
-  padding: 10px;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
   background-size: 200% 200%;
@@ -31,11 +32,6 @@ body {
 }
 
 
-/* Dans votre fichier styles.css */
-body {
-  margin: 0;
-  padding: 0;
-}
 
 header {
   color: #fff;
@@ -64,7 +60,6 @@ header {
   height: 3px;
   margin: 3px 0;
   transition: 0.4s;
-  display: ; /* Assurer que les spans se comportent comme des blocs */
 }
 
 /* Styles pour le menu burger actif */
@@ -114,21 +109,21 @@ header {
 }
 
 
-/* Styles pour le conteneur du formulaire */
+
+
+/* Styles de base pour le conteneur */
 .container {
+  display: flex;
+  flex-direction: column;
   max-width: 800px;
+  flex-wrap: wrap;
+   margin: 100px auto;
   background: #fff;
-  position: relative;
-  overflow: hidden;
-  width: 800px;
-  padding: 25px 40px 10px 40px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border: 2px solid transparent;
-  position: absolute;
-  top: 50%; /* Position verticale au milieu de la page */
-  left: 50%; /* Position horizontale au milieu de la page */
-  transform: translate(-50%, -50%); /* Centrer le contenu */
-  overflow: hidden;
+
+
+
 }
 
 
@@ -144,19 +139,20 @@ header {
 }
 
 .container form {
-  padding: 30px 0 0 0;
+  padding: 30px 0 0;
 }
 
 /* Styles pour les champs de formulaire */
 .container form .form-row {
   display: flex;
+
   margin: 32px 0;
 }
 
 form .form-row .input-data {
   width: 100%;
-  height: 40px;
-  margin: 0 20px;
+  height: 100px;
+  margin: 0 20px ;
   position: relative;
 }
 
@@ -222,8 +218,6 @@ form .form-row .input-data {
 .textarea textarea:valid ~ .underline:before {
   transform: scale(1);
 }
-
-
 
 /* CSS */
 .button-85 {
@@ -418,15 +412,14 @@ form .form-row .input-data {
 
 
 
-
   .index {
-    background: rgba(255, 255, 255, 0.2); /* Couleur de fond transparente */
-    backdrop-filter: blur(10px); /* Effet de flou pour le verre */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   padding: 20px;
   border-radius: 10px;
-   max-width: 600px; /* Pour limiter la largeur du conteneur */
-  margin: 200px auto; /* Pour centrer le conteneur */
+   max-width: 600px; 
+  margin: 200px auto; 
           }
 /* Styles pour le titre */
 #features-title {
@@ -483,7 +476,7 @@ form .form-row .input-data {
 
 /* Styles pour la table */
 #table {
-  width: 60%;
+  width: 40%;
   border-collapse: collapse;
   margin: 50px auto;
   background: transparent;
@@ -518,6 +511,13 @@ input[type="submit"] {
 input[type="submit"]:hover {
   background: rgba(255, 0, 0, 1); /* Couleur de fond rouge plus intense au survol */
 }
+
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 50%;
+    margin-top: 0;
+  }
 
 .todolist-container {
   display: flex;

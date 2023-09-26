@@ -81,6 +81,7 @@ $tasks = $taskCrud->getTasks();
                     <th>ID de la Tâche</th>
                     <th>Nom de la Tâche</th>
                     <th>Description</th>
+                    <td>Date de fin</td>
                     <th>Action Tâche</th>
                 </tr>
             </thead>
@@ -142,9 +143,12 @@ $tasks = $taskCrud->getTasks();
                     <td>${task.id}</td>
                     <td>${task.name}</td>
                     <td>${task.description}</td>
+                    <td>${task.end_date}</td>
+
                     <td>
                         <button onclick="prepareToDeleteTask(${task.id});">Supprimer la Tâche</button>
                     </td>
+
                 `;
             });
         }
