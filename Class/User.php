@@ -39,7 +39,7 @@ class UserCrud
         echo json_encode($user);
 
     }
-
+    
     public function getUserById($userId, $returnName = false)
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");
@@ -107,7 +107,7 @@ class UserCrud
 }
 
 try {
-    $db = new PDO('mysql:host=localhost;dbname=super-reminder', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=superreminder', 'root', 'SuperP3scado');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $userCrud = new UserCrud($db);

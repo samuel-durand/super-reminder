@@ -30,7 +30,7 @@ const getProjects = () => {
 
     const projectDiv = document.querySelector('.current-projects');
 
-    fetch('./Routes/Projects/getProjects.php')
+    fetch('./Route/Projects/getProjects.php')
     .then(response => response.json())
     .then(data => {
         projectDiv.innerHTML = '';
@@ -59,7 +59,7 @@ const fillEditForm = (project) => {
 
 const deleteProject = (id) => {
 
-    fetch('./Routes/Projects/deleteProject.php', {
+    fetch('./Route/Projects/deleteProject.php', {
         method: 'POST',
         body: JSON.stringify({id: id})
     })
@@ -72,7 +72,7 @@ const addProject = () => {
     const description = document.querySelector('#description');
     const end_date = document.querySelector('#date');
 
-    fetch('./Routes/Projects/addProject.php', {
+    fetch('./Route/Projects/addProject.php', {
         method: 'POST',
         body: JSON.stringify({
             name: name.value,
@@ -89,7 +89,7 @@ const editProject = (id) => {
     const editDescription = document.querySelector('#edit-description');
     const editDate = document.querySelector('#edit-date');
 
-    fetch('./Routes/Projects/editProject.php', {
+    fetch('./Route/Projects/editProject.php', {
         method: 'POST',
         body: JSON.stringify({
             id: id,

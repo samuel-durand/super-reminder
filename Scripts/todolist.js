@@ -38,7 +38,7 @@ const getTasks = () => {
     const doneTaskList = document.querySelector('.done-tasks');
 
     // Récupération des tâches
-    fetch("./../Routes/Tasks/getTasks.php/?listId=" + listId + "")
+    fetch("./../Route/Tasks/getTasks.php/?listId=" + listId + "")
         .then(res => res.json())
         .then(data => {
 
@@ -82,7 +82,7 @@ const editTask = (id) => {
     const editDescription = document.querySelector('#edit-description');
     const editDate = document.querySelector('#edit-date');
 
-    fetch("./../Routes/Tasks/editTask.php", {
+    fetch("./../Route/Tasks/editTask.php", {
         method: "POST",
         body: JSON.stringify({
             id: id,
@@ -97,7 +97,7 @@ const editTask = (id) => {
 
 const toggleStatus = (task) => {
 
-    fetch("./../Routes/Tasks/toggleTask.php", {
+    fetch("./../Route/Tasks/toggleTask.php", {
         method: "POST",
         body: JSON.stringify({
             id: task.id,
@@ -111,7 +111,7 @@ const toggleStatus = (task) => {
 const deleteTask = (id) => {
     if (!confirm('Voulez-vous vraiment supprimer cette tâche ?')) return 0;
 
-    fetch("./../Routes/Tasks/deleteTask.php", {
+    fetch("./../Route/Tasks/deleteTask.php", {
         method: "POST",
         body: JSON.stringify({
             id: id
@@ -126,7 +126,7 @@ const addTask = () => {
     const description = document.querySelector('#description').value;
     const date = document.querySelector('#date').value;
 
-    fetch("./../Routes/Tasks/addTask.php", {
+    fetch("./../Route/Tasks/addTask.php", {
         method: "POST",
         body: JSON.stringify({
             name: name,
