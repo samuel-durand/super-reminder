@@ -1,21 +1,7 @@
 <?php
 
     require_once 'Class/Task.php';
-
     session_start();
-    if($_SERVER["REQUEST_METHOD"] === "POST"){
-        $name = trim(htmlspecialchars($_POST['name']));
-        $description = trim(htmlspecialchars($_POST['description']));
-        $user_id = $_SESSION['user_id'];
-
-        $task = $taskCrud->createTask($name, $description, $user_id);
-
-        if($task){
-            
-        }else{
-            $errorMessage = "Une erreur s'est produite lors de l'ajout de la tache.";
-        }
-    }
 ?>
 
 <!DOCTYPE html>
@@ -71,9 +57,46 @@
             }
         ?>
     </div>
-    <div class="tasks-container">
-
+    <div class="todolist-container">
+        <div class="tasks-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Date de fin</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="current-tasks">
+        
+                </tbody>
+            </table>
+        </div>
+        <div class="tasks-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Description</th>
+                        <th>Date de fin</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="done-tasks">
+        
+                </tbody>
+            </table>
+        </div>
     </div>
-
+    <div>
+        <form id="edit-form" class="edit-container">
+            <input type="hidden" id="edit-id" name="edit-id">
+            <input type="text" id="edit-name" name="edit-name" placeholder="Nom">
+            <input type="text" id="edit-description" name="edit-description" placeholder="Description">
+            <input type="date" id="edit-date" name="edit-date" placeholder="Date de fin">
+            <button type="button" id="edit-btn" class="button-85" role="button">Modifier</button>
+        </form>
+    </div>
 </body>
 </html>
