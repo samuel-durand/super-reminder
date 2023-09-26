@@ -7,7 +7,7 @@ const taskDisplay = (task, container) => {
             <td>${task.description}</td>
             <td>${task.end_date}</td>
             <td>
-                <input type="checkbox" id="checkbox${task.id}" class="checkbox" ${task.status ? 'checked' : ''}>
+                <button id="done-btn${task.id}" class="btn btn-success">${task.status ? ("Restorer"):("Terminer")}</button>
                 <button id="edit-btn${task.id}" class="btn btn-primary">Editer</button>
                 <button id="delete-btn${task.id}" class="btn btn-danger">Supprimer</button>
             </td>
@@ -15,9 +15,13 @@ const taskDisplay = (task, container) => {
     
         container.appendChild(taskDiv);
         // add event listeners on buttons
+        const doneBtn = document.querySelector(`#done-btn${task.id}`);
         const editBtn = document.querySelector(`#edit-btn${task.id}`);
         const deleteBtn = document.querySelector(`#delete-btn${task.id}`);
-
+        
+        doneBtn.addEventListener('click', () => {
+            toggleStatus(task)
+        });
         editBtn.addEventListener('click', () => {
             fillEditForm(task)
         });
@@ -42,7 +46,7 @@ const getTasks = () => {
             data.tasks.forEach(task => {
                 console.log(task);
                 // Affichage des tâches dans le DOM
-                if (task.status) {
+                if (!task.status) {
                     taskDisplay(task, taskList);
                 } else {
                     taskDisplay(task, doneTaskList);
@@ -84,6 +88,18 @@ const editTask = (id) => {
             name: editName.value,
             description: editDescription.value,
             end_date: editDate.value
+        })
+    })
+    .then(() => getTasks())
+};
+
+const toggleStatus = (task) => {
+
+    fetch("./Route/toggleTask.php", {
+        method: "POST",
+        body: JSON.stringify({
+            id: task.id,
+            status: task.status
         })
     })
     .then(() => getTasks())

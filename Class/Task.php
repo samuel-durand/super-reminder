@@ -50,6 +50,18 @@ class TaskCrud{
         $stmt->bindParam(':id', $taskId);
         return $stmt->execute();
     }
+
+    public function endTask($taskId){
+        $stmt = $this->db->prepare("UPDATE task SET status = 1 WHERE id = :id");
+        $stmt->bindParam(':id', $taskId);
+        return $stmt->execute();
+    }
+
+    public function restoreTask($taskId){
+        $stmt = $this->db->prepare("UPDATE task SET status = 0 WHERE id = :id");
+        $stmt->bindParam(':id', $taskId);
+        return $stmt->execute();
+    }
 }
 
 try {
