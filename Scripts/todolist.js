@@ -1,3 +1,5 @@
+const listId = new URLSearchParams(window.location.search).get("listId")
+
 const taskDisplay = (task, container) => {
     
         const taskDiv = document.createElement('tr');
@@ -7,14 +9,14 @@ const taskDisplay = (task, container) => {
             <td>${task.description}</td>
             <td>${task.end_date}</td>
             <td>
-                <button id="done-btn${task.id}" class="btn btn-success">${task.status ? ("Restorer"):("Terminer")}</button>
-                <button id="edit-btn${task.id}" class="btn btn-primary">Editer</button>
-                <button id="delete-btn${task.id}" class="btn btn-danger">Supprimer</button>
+                <button id="done-btn${task.id}" class="btn">${task.status ? ("Restorer"):("Terminer")}</button>
+                <button id="edit-btn${task.id}" class="btn">Editer</button>
+                <button id="delete-btn${task.id}" class="btn">Supprimer</button>
             </td>
         `;
     
         container.appendChild(taskDiv);
-        // add event listeners on buttons
+        // ajout des event listeners sur les boutons
         const doneBtn = document.querySelector(`#done-btn${task.id}`);
         const editBtn = document.querySelector(`#edit-btn${task.id}`);
         const deleteBtn = document.querySelector(`#delete-btn${task.id}`);
@@ -36,7 +38,7 @@ const getTasks = () => {
     const doneTaskList = document.querySelector('.done-tasks');
 
     // Récupération des tâches
-    fetch("./Route/getTasks.php")
+    fetch("./../Routes/Tasks/getTasks.php/?listId=" + listId + "")
         .then(res => res.json())
         .then(data => {
 
@@ -44,7 +46,7 @@ const getTasks = () => {
             doneTaskList.innerHTML = '';
 
             data.tasks.forEach(task => {
-                console.log(task);
+
                 // Affichage des tâches dans le DOM
                 if (!task.status) {
                     taskDisplay(task, taskList);
@@ -55,7 +57,7 @@ const getTasks = () => {
         })
 };
 
-// function that automatically fills the edit form with the task's data
+// fonction de remplissage du formulaire d'édition
 const fillEditForm = (task) => {
     const editName = document.querySelector('#edit-name');
     const editDescription = document.querySelector('#edit-description');
@@ -79,14 +81,14 @@ const editTask = (id) => {
     const editName = document.querySelector('#edit-name');
     const editDescription = document.querySelector('#edit-description');
     const editDate = document.querySelector('#edit-date');
-    const editId = document.querySelector('#edit-id');
 
-    fetch("./Route/editTask.php", {
+    fetch("./../Routes/Tasks/editTask.php", {
         method: "POST",
         body: JSON.stringify({
-            id: editId.value,
+            id: id,
             name: editName.value,
             description: editDescription.value,
+            list_id: listId,
             end_date: editDate.value
         })
     })
@@ -95,7 +97,7 @@ const editTask = (id) => {
 
 const toggleStatus = (task) => {
 
-    fetch("./Route/toggleTask.php", {
+    fetch("./../Routes/Tasks/toggleTask.php", {
         method: "POST",
         body: JSON.stringify({
             id: task.id,
@@ -109,7 +111,7 @@ const toggleStatus = (task) => {
 const deleteTask = (id) => {
     if (!confirm('Voulez-vous vraiment supprimer cette tâche ?')) return 0;
 
-    fetch("./Route/deleteTask.php", {
+    fetch("./../Routes/Tasks/deleteTask.php", {
         method: "POST",
         body: JSON.stringify({
             id: id
@@ -124,12 +126,13 @@ const addTask = () => {
     const description = document.querySelector('#description').value;
     const date = document.querySelector('#date').value;
 
-    fetch("./Route/addTask.php", {
+    fetch("./../Routes/Tasks/addTask.php", {
         method: "POST",
         body: JSON.stringify({
             name: name,
             description: description,
-            end_date: date
+            end_date: date,
+            list_id: listId
         })
     })
     .then(() => getTasks())

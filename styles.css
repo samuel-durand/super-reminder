@@ -512,9 +512,30 @@ input[type="submit"]:hover {
   background: rgba(255, 0, 0, 1); /* Couleur de fond rouge plus intense au survol */
 }
 
+
 @media screen and (max-width: 600px) {
   .container {
     width: 50%;
     margin-top: 0;
   }
+
+.todolist-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.tasks-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.projectlist-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
 }
