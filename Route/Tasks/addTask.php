@@ -1,6 +1,6 @@
 <?php
 
-    require_once "../Class/Task.php";
+    require_once "../../Class/Task.php";
     session_start();
     
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -11,8 +11,9 @@
         $name = trim(htmlspecialchars($data['name']));
         $description = trim(htmlspecialchars($data['description']));
         $endDate = trim(htmlspecialchars($data['end_date']));
+        $projectId = trim(htmlspecialchars($data['list_id']));
 
-        $response['success'] = $taskCrud->createTask($name, $description, $_SESSION["user_id"], $endDate);
+        $response['success'] = $taskCrud->createTask($name, $description, $_SESSION["user_id"], $projectId, $endDate);
         echo json_encode($response);
     }
 ?>
