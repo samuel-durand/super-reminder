@@ -1,11 +1,5 @@
 <?php
 
-    require_once 'Class/Task.php';
-    session_start();
-
-    if ($_GET["listId"]) {
-        $listId = $_GET["listId"];
-    }
 ?>
 
 <!DOCTYPE html>
@@ -15,15 +9,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout de tache</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
-    <link rel="stylesheet" type="text/css" href="../styles.css">
-    <script type="text/javascript" src="../Scripts/todolist.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script type="text/javascript" src="./Scripts/project.js"></script>
 </head>
 <body>
     <?php include('Header.php');?>
-    <script src="../menu.js"></script>
+    <script src="menu.js"></script>
     <div class="container">
         <form method="post" id="task-form" class="gradient-border">
-            <input type="hidden" id="list-id" name="list-id" value="<?php echo $listId ?>">
             <div class="form-row">
                 <div class="input-data">
                     <input type="text" id="name" name="name" placeholder="Nom">
@@ -61,11 +54,11 @@
             }
         ?>
     </div>
-    <div class="todolist-container">
-        <div class="tasks-container">
+    <div class="projectlist-container">
+        <div class="projects-container">
             <table>
                 <caption>
-                    <h2>Tâches à faire</h2>
+                    <h2>Projets</h2>
                 </caption>
                 <thead>
                     <tr>
@@ -75,25 +68,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
-                <tbody class="current-tasks">
-        
-                </tbody>
-            </table>
-        </div>
-        <div class="tasks-container">
-            <table>
-                <caption>
-                    <h2>Tâches terminées</h2>
-                </caption>
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Description</th>
-                        <th>Date de fin</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody class="done-tasks">
+                <tbody class="current-projects">
         
                 </tbody>
             </table>

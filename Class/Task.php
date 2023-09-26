@@ -8,19 +8,14 @@ class TaskCrud{
         $this->db = $db;
     }
 
-    public function createTask($name, $description, $user_id, $endDate){
-        $stmt = $this->db->prepare("INSERT INTO task (name, description, user_id, end_date) VALUES (:name, :description, :user_id, :end_date)");
+    public function createTask($name, $description, $user_id, $listId, $endDate){
+        $stmt = $this->db->prepare("INSERT INTO task (name, description, user_id, list_id, end_date) VALUES (:name, :description, :user_id, :list_id, :end_date)");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':list_id', $listId);
         $stmt->bindParam(':end_date', $endDate);
-        if ($stmt->execute()) {
-            $taskId = $this->db->lastInsertId();
-            return $this->getTaskById($taskId);
-
-        } else {
-            return false;
-        }
+        return $stmt->execute();
     }
 
     public function getTasks(){
@@ -36,11 +31,12 @@ class TaskCrud{
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
-    public function updateTask($taskId, $name, $description, $endDate){
-        $stmt = $this->db->prepare("UPDATE task SET name = :name, description = :description, end_date = :end_date WHERE id = :id");
+    public function updateTask($taskId, $name, $description, $listId, $endDate){
+        $stmt = $this->db->prepare("UPDATE task SET name = :name, description = :description, list_id = :list_id, end_date = :end_date WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':list_id', $listId);
         $stmt->bindParam(':end_date', $endDate);
         return $stmt->execute();
     }
