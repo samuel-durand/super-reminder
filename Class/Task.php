@@ -8,11 +8,12 @@ class TaskCrud{
         $this->db = $db;
     }
 
-    public function createTask($name, $description, $user_id){
-        $stmt = $this->db->prepare("INSERT INTO task (name, description, user_id) VALUES (:name, :description, :user_id)");
+    public function createTask($name, $description, $user_id, $endDate){
+        $stmt = $this->db->prepare("INSERT INTO task (name, description, user_id, end_date) VALUES (:name, :description, :user_id, :end_date)");
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
         $stmt->bindParam(':user_id', $user_id);
+        $stmt->bindParam(':end_date', $endDate);
         if ($stmt->execute()) {
             $taskId = $this->db->lastInsertId();
             return $this->getTaskById($taskId);
@@ -35,11 +36,12 @@ class TaskCrud{
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
-    public function updateTask($taskId, $name, $description){
-        $stmt = $this->db->prepare("UPDATE task SET name = :name, description = :description WHERE id = :id");
+    public function updateTask($taskId, $name, $description, $endDate){
+        $stmt = $this->db->prepare("UPDATE task SET name = :name, description = :description, end_date = :end_date WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
         $stmt->bindParam(':name', $name);
         $stmt->bindParam(':description', $description);
+        $stmt->bindParam(':end_date', $endDate);
         return $stmt->execute();
     }
 
@@ -57,7 +59,6 @@ try {
     $taskCrud = new TaskCrud($db);
 
     $tasks = $taskCrud->getTasks();
-    var_dump($tasks);
 } catch (PDOException $e) {
     echo 'Erreur de connexion à la base de données : ' . $e->getMessage();
 }

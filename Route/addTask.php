@@ -10,8 +10,9 @@
 
         $name = trim(htmlspecialchars($data['name']));
         $description = trim(htmlspecialchars($data['description']));
+        $endDate = trim(htmlspecialchars($data['end_date']));
 
-        $response['success'] = $taskCrud->createTask($name, $description, $_SESSION["user_id"]);
+        $response['success'] = $taskCrud->createTask($name, $description, $_SESSION["user_id"], $endDate);
         echo json_encode($response);
     }
 ?>
