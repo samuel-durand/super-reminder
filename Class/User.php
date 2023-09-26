@@ -107,7 +107,7 @@ class UserCrud
 }
 
 try {
-    $db = new PDO('mysql:host=localhost;dbname=superreminder', 'root', 'SuperP3scado');
+    $db = new PDO('mysql:host=localhost;dbname=super-reminder', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $userCrud = new UserCrud($db);
