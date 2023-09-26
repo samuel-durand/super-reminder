@@ -65,7 +65,7 @@ class TaskCrud{
 }
 
 try {
-    $db = new PDO('mysql:host=localhost;dbname=superreminder', 'root', '');
+    $db = new PDO('mysql:host=localhost;dbname=super-reminder', 'root', '');
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     $taskCrud = new TaskCrud($db);

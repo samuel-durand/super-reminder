@@ -11,6 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ajout de tache</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
+    <script defer src="Scripts\todolist.js"></script>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script type="text/javascript" src="./Scripts/todolist.js"></script>
 </head>
