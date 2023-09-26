@@ -470,7 +470,7 @@ form .form-row .input-data {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 80%; /* Largeur du conteneur */
+  width: 100%; /* Largeur du conteneur */
   margin: 0 auto; /* Centrer le conteneur horizontalement */
   padding: 20px;
   background: white;
@@ -483,8 +483,9 @@ form .form-row .input-data {
 
 /* Styles pour la table */
 #table {
-  width: 40%;
+  width: 60%;
   border-collapse: collapse;
+  margin: 50px auto;
   background: transparent;
   text-align: left; /* Aligner le texte à gauche dans la table */
 }
@@ -518,48 +519,3 @@ input[type="submit"]:hover {
   background: rgba(255, 0, 0, 1); /* Couleur de fond rouge plus intense au survol */
 }
 
-/*player */
-
-
-
-.music-player {
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.player-controls {
-  margin-top: 10px;
-}
-
-button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
-}
-
-.progress-bar {
-  height: 5px;
-  background-color: #ccc;
-  margin-top: 10px;
-}
-
-.progress {
-  height: 100%;
-  width: 0;
-  background-color: #007BFF;
-}
-
-.track-info {
-  margin-top: 10px;
-}
-
-#current-time, #duration {
-  font-weight: bold;
-}
