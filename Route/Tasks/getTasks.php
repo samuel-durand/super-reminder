@@ -1,6 +1,7 @@
 <?php
     require_once "../../Class/Task.php";
     require_once "../../Class/Project.php";
+    session_start();
 
     if($_SERVER["REQUEST_METHOD"] === "GET"){
 
@@ -9,6 +10,11 @@
 
         $project_id = $_GET["listId"];
         $response["tasks"] = $projectCrud->getProjectTasks($project_id);
+        $response["members"] = $projectCrud->getProjectMembers($project_id);
+        foreach($response["tasks"] as $task){
+            $task->members = $taskCrud->getTaskMembers($task->id);
+        }
+        $response["user"] = $_SESSION["user_id"];
         echo json_encode($response);
     }
 ?>

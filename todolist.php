@@ -1,10 +1,12 @@
 <?php
 
     require_once 'Class/Task.php';
+    require_once 'Class/Project.php';
     session_start();
 
     if ($_GET["listId"]) {
         $listId = $_GET["listId"];
+        $project = $projectCrud->getProject($listId);
     }
 ?>
 
@@ -21,6 +23,10 @@
 <body>
     <?php include('Header.php');?>
     <script src="../menu.js"></script>
+    <div class="project-header">
+        <h1><?php echo $project->name ?></h1>
+        <p><?php echo $project->description ?></p>
+    </div>
     <div class="container">
         <form method="post" id="task-form" class="gradient-border">
             <input type="hidden" id="list-id" name="list-id" value="<?php echo $listId ?>">

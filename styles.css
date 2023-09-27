@@ -533,6 +533,12 @@ input[type="submit"]:hover {
   justify-content: flex-start;
 }
 
+.project-header{
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+}
+
 @media screen and (max-width: 600px) {
   .container {
     width: 50%;

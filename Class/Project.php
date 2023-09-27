@@ -15,13 +15,25 @@
             $stmt->bindParam(':description', $description);
             $stmt->bindParam(':end_date', $endDate);
             $stmt->bindParam(':user_id', $user_id);
-            return $stmt->execute();
+            if ($stmt->execute()) {
+                $projectId = $this->db->lastInsertId();
+                return $this->addProjectMember($projectId, $user_id, 'admin');
+            } else {
+                return false;
+            }
         }
 
         public function getProjects(){
             $stmt = $this->db->query("SELECT * FROM task_list");
             return $stmt->fetchAll(PDO::FETCH_OBJ);
             
+        }
+
+        public function getProject($id) {
+            $stmt = $this->db->prepare("SELECT * FROM task_list WHERE id = :id");
+            $stmt->bindParam(':id', $id);
+            $stmt->execute();
+            return $stmt->fetch(PDO::FETCH_OBJ);
         }
 
         public function getProjectById($projectId){
@@ -49,6 +61,21 @@
         public function getProjectTasks($projectId){
             $stmt = $this->db->prepare("SELECT * FROM task WHERE list_id = :list_id");
             $stmt->bindParam(':list_id', $projectId);
+            $stmt->execute();
+            return $stmt->fetchAll(PDO::FETCH_OBJ);
+        }
+
+        public function addProjectMember($projectId, $userId, $role = "user"){
+            $stmt = $this->db->prepare("INSERT INTO project_member (project_id, user_id, role) VALUES (:project_id, :user_id, :role)");
+            $stmt->bindParam(':project_id', $projectId);
+            $stmt->bindParam(':user_id', $userId);
+            $stmt->bindParam(':role', $role);           
+            return $stmt->execute();
+        }
+
+        public function getProjectMembers($projectId){
+            $stmt = $this->db->prepare("SELECT * FROM project_member WHERE project_id = :project_id");
+            $stmt->bindParam(':project_id', $projectId);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
         }
