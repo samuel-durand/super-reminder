@@ -75,6 +75,7 @@
         </div>
     </div>
     <div>
+        <div class="test">
         <form id="edit-form" class="edit-container">
             <input type="hidden" id="edit-id" name="edit-id">
             <input type="text" id="edit-name" name="edit-name" placeholder="Nom">
@@ -82,6 +83,7 @@
             <input type="date" id="edit-date" name="edit-date" placeholder="Date de fin">
             <button type="button" id="edit-btn" class="button-85" role="button">Modifier</button>
         </form>
+        </div>
     </div>
 </body>
 </html>
