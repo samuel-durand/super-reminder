@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <?php include('Header.php');?>
 <script src="menu.js"></script>
-<div class="container" >
+<div class="test" >
     <div class="text">Inscription</div>
     <form method="POST" id="registrationForm" class="gradient-border">
         <div class="form-row">
@@ -75,12 +75,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </div>
         <div class="form-row">
-            <!-- Ajout de la classe "submit-btn" pour le bouton -->
             <div class="submit-btn">
                 <div class="input-data">
                     <button type="submit" class="button-85"  role="button">S'inscrire</button>
 
-                    <!-- Ajout de la classe "inner" pour l'animation du bouton -->
                     <div class="inner"></div>
                 </div>
             </div>

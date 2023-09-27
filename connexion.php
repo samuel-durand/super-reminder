@@ -33,7 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <?php include('Header.php');?>
 <script src="menu.js"></script>
 
-    <div class="container">
+    <div class="test">
         <div class="text">Connexion</div>
         <form method="POST">
             <div class="form-row">

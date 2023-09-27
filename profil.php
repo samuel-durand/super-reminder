@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
 <body>
 <?php include('Header.php');?>
 <script src="menu.js"></script>
-    <div class="container">
+    <div class="test">
         <?php
         if ($user) {
             echo "Bienvenue, " . $user['login'] . " " . $user['lastname'];
