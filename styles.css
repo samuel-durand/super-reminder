@@ -15,7 +15,6 @@
 
 /* Styles pour le fond animé */
 body {
-
   min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
@@ -77,20 +76,21 @@ header {
 }
 
 .sidebar {
-  background: rgba(255, 255, 255, 0.2); /* Couleur de fond transparente */
-  backdrop-filter: blur(10px); /* Effet de flou pour le verre */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  background: rgba(0, 0, 0, 0.2); 
+  backdrop-filter: blur(10px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   color: #fff;
   width: 250px;
   height: 100%;
   position: fixed;
   top: 0;
-  left: -250px; /* Caché initialement à gauche */
+  left: -300px; /* Caché initialement à gauche */
   transition: 0.4s;
+  z-index: 9999;
 }
 
 .sidebar.active {
-  left: 0; /* Afficher la barre latérale lorsque active */
+  left: 0; 
 }
 
 
@@ -113,12 +113,11 @@ header {
 
 
 /* Styles de base pour le conteneur */
-.container {
+.test {
   display: flex;
   flex-direction: column;
-  max-width: 800px;
   flex-wrap: wrap;
-   margin: 100px auto;
+   margin:  auto;
   background: #fff;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border: 2px solid transparent;
@@ -129,7 +128,7 @@ header {
 
 
 
-.container .text {
+.test .text {
   text-align: center;
   font-size: 41px;
   font-weight: 600;
@@ -139,12 +138,12 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
-.container form {
+.test form {
   padding: 30px 0 0;
 }
 
 /* Styles pour les champs de formulaire */
-.container form .form-row {
+.test form .form-row {
   display: flex;
 
   margin: 32px 0;
@@ -463,15 +462,16 @@ form .form-row .input-data {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%; /* Largeur du conteneur */
-  margin: 0 auto; /* Centrer le conteneur horizontalement */
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto; 
   padding: 20px;
   background: white;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure avec transparence */
-  border-radius: 10px; /* Coins arrondis */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
-  backdrop-filter: blur(10px); /* Flou du fond pour effet de verre */
-  text-align: center; /* Centrer le contenu à l'intérieur du conteneur */
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px; 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  backdrop-filter: blur(10px); 
+  text-align: center; 
 }
 
 /* Styles pour la table */
@@ -540,8 +540,65 @@ input[type="submit"]:hover {
 }
 
 @media screen and (max-width: 600px) {
-  .container {
-    width: 50%;
+  .test {
+    margin: 0;
+    width: 100%;
     margin-top: 0;
   }
+
+  #table {
+    width: 100%;
+    height: 500px;
+  }
+
+  th, td {
+    height: 600px;
+    width: 100%;
+  }
+
+  sidebar {
+    width: 100%;
+  }
 }
+
+
+@media screen and (min-width: 700px) {
+  .test {
+    margin: 0 auto;
+    width: 100%;
+    height: 600px;
+  }
+
+
+
+  #table {
+    width: 100%;
+    height: 500px;
+  }
+
+  th, td {
+    flex-grow: 1;
+    flex-basis: 200;
+    width: 100%;
+  }
+
+
+}
+
+
+@media screen and (min-width: 1000px) {
+  .test {
+    margin: 50px auto;
+    width: 80%;
+  }
+
+  #table {
+    width: 60%;
+    height: 500px;
+  }
+
+  th, td {
+    width: 60%;
+  }
+}
+
