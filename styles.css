@@ -583,7 +583,8 @@ input[type="submit"]:hover {
 @media screen and (min-width: 1000px) {
   .test {
     margin: 50px auto;
-    width: 80%;
+    width: 60%;
+    height: 500px;
   }
 
   #table {
