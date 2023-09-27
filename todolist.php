@@ -27,7 +27,7 @@
         <h1><?php echo $project->name ?></h1>
         <p><?php echo $project->description ?></p>
     </div>
-    <div class="container">
+    <div class="test">
         <form method="post" id="task-form" class="gradient-border">
             <input type="hidden" id="list-id" name="list-id" value="<?php echo $listId ?>">
             <div class="form-row">
