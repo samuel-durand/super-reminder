@@ -16,6 +16,7 @@
 /* Styles pour le fond animé */
 body {
 
+  min-height: 100vh;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
   background-size: 200% 200%;
@@ -151,7 +152,6 @@ header {
 
 form .form-row .input-data {
   width: 100%;
-  height: 100px;
   margin: 0 20px ;
   position: relative;
 }
