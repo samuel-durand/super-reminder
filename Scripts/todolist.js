@@ -1,35 +1,43 @@
 const listId = new URLSearchParams(window.location.search).get("listId")
 
-const taskDisplay = (task, container) => {
-    
+const taskDisplay = (task, container, user, members) => {
+        
         const taskDiv = document.createElement('tr');
         taskDiv.classList.add('task');
         taskDiv.innerHTML = `
             <td>${task.name}</td>
             <td>${task.description}</td>
             <td>${task.end_date}</td>
-            <td>
-                <button id="done-btn${task.id}" class="btn">${task.status ? ("Restorer"):("Terminer")}</button>
-                <button id="edit-btn${task.id}" class="btn">Editer</button>
-                <button id="delete-btn${task.id}" class="btn">Supprimer</button>
-            </td>
+            ${
+                (task.members.find(member => member.user_id == user)  || 
+                members.find(member => member.user_id == user).role === "admin") ? (
+                `<td>
+                    <button id="done-btn${task.id}" class="btn">${task.status ? ("Restorer"):("Terminer")}</button>
+                    <button id="edit-btn${task.id}" class="btn">Editer</button>
+                    <button id="delete-btn${task.id}" class="btn">Supprimer</button>
+                </td>`)
+                : ('')
+            }
         `;
     
         container.appendChild(taskDiv);
         // ajout des event listeners sur les boutons
-        const doneBtn = document.querySelector(`#done-btn${task.id}`);
-        const editBtn = document.querySelector(`#edit-btn${task.id}`);
-        const deleteBtn = document.querySelector(`#delete-btn${task.id}`);
-        
-        doneBtn.addEventListener('click', () => {
-            toggleStatus(task)
-        });
-        editBtn.addEventListener('click', () => {
-            fillEditForm(task)
-        });
-        deleteBtn.addEventListener('click', () => {
-            deleteTask(task.id)
-        });
+
+        if (task.members.find(member => member.user_id == user)) {
+            const doneBtn = document.querySelector(`#done-btn${task.id}`);
+            const editBtn = document.querySelector(`#edit-btn${task.id}`);
+            const deleteBtn = document.querySelector(`#delete-btn${task.id}`);
+            
+            doneBtn.addEventListener('click', () => {
+                toggleStatus(task)
+            });
+            editBtn.addEventListener('click', () => {
+                fillEditForm(task)
+            });
+            deleteBtn.addEventListener('click', () => {
+                deleteTask(task.id)
+            });
+        }
 };
 
 const getTasks = () => {
@@ -49,9 +57,9 @@ const getTasks = () => {
 
                 // Affichage des tâches dans le DOM
                 if (!task.status) {
-                    taskDisplay(task, taskList);
+                    taskDisplay(task, taskList, data.user, data.members);
                 } else {
-                    taskDisplay(task, doneTaskList);
+                    taskDisplay(task, doneTaskList, data.user, data.members);
                 }
             });
         })

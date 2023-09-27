@@ -15,7 +15,12 @@ class TaskCrud{
         $stmt->bindParam(':user_id', $user_id);
         $stmt->bindParam(':list_id', $listId);
         $stmt->bindParam(':end_date', $endDate);
-        return $stmt->execute();
+        if($stmt->execute()){
+            $taskId = $this->db->lastInsertId();
+            return $this->addTaskMember($taskId, $user_id, 'admin');
+        } else {
+            return false;
+        }
     }
 
     public function getTasks(){
@@ -57,6 +62,21 @@ class TaskCrud{
         $stmt = $this->db->prepare("UPDATE task SET status = 0 WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
         return $stmt->execute();
+    }
+
+    public function addTaskMember($taskId, $userId, $role = "user"){
+        $stmt = $this->db->prepare("INSERT INTO task_member (task_id, user_id, role) VALUES (:task_id, :user_id, :role)");
+        $stmt->bindParam(':task_id', $taskId);
+        $stmt->bindParam(':user_id', $userId);
+        $stmt->bindParam(':role', $role);
+        return $stmt->execute();
+    }
+
+    public function getTaskMembers($taskId){
+        $stmt = $this->db->prepare("SELECT * FROM task_member WHERE task_id = :task_id");
+        $stmt->bindParam(':task_id', $taskId);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_OBJ);
     }
 }
 

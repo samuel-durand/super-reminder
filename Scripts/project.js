@@ -1,4 +1,4 @@
-const projectDisplay = (project, projectDiv) => {
+const projectDisplay = (project, projectDiv, user) => {
 
     const projectRow = document.createElement('tr');
     projectRow.classList.add('project');
@@ -7,22 +7,28 @@ const projectDisplay = (project, projectDiv) => {
         <td><a href="todolist.php/?listId=${project.id}">${project.name}</a></td>
         <td>${project.description}</td>
         <td>${project.end_date}</td>
-        <td>
-            <button id="edit-btn${project.id}" class="btn">Editer</button>
-            <button id="delete-btn${project.id}" class="btn">Supprimer</button>
-        </td>
+        ${
+            project.members.find(member => member.user_id == user).role == 'admin' ? (
+            `<td>
+                <button id="edit-btn${project.id}" class="btn">Editer</button>
+                <button id="delete-btn${project.id}" class="btn">Supprimer</button>
+            </td>`)
+            : ('')
+        }
     `;
     projectDiv.appendChild(projectRow);
+    
+    if (project.members.find(member => member.user_id == user).role == 'admin') {
+        const editBtn = document.querySelector(`#edit-btn${project.id}`);
+        const deleteBtn = document.querySelector(`#delete-btn${project.id}`);
 
-    const editBtn = document.querySelector(`#edit-btn${project.id}`);
-    const deleteBtn = document.querySelector(`#delete-btn${project.id}`);
-
-    editBtn.addEventListener('click', () => {
-        fillEditForm(project);
-    });
-    deleteBtn.addEventListener('click', () => {
-        deleteProject(project.id);
-    });
+        editBtn.addEventListener('click', () => {
+            fillEditForm(project);
+        });
+        deleteBtn.addEventListener('click', () => {
+            deleteProject(project.id);
+        });
+    }
 
 }
 
@@ -36,7 +42,7 @@ const getProjects = () => {
         projectDiv.innerHTML = '';
 
         data.projects.forEach(project => {
-            projectDisplay(project, projectDiv);
+            projectDisplay(project, projectDiv, data.user);
         });
     });
 };
@@ -58,6 +64,10 @@ const fillEditForm = (project) => {
 };
 
 const deleteProject = (id) => {
+
+    if(!confirm('Voulez-vous vraiment supprimer ce projet ?')) {
+        return;
+    }
 
     fetch('./Route/Projects/deleteProject.php', {
         method: 'POST',
