@@ -8,8 +8,7 @@ const taskDisplay = (task, container, user, members) => {
             <td>${task.name}</td>
             <td>${task.description}</td>
             <td>${task.end_date}</td>
-            ${  // find the role of user in task.members or project.members
-                // if role == 'admin' then display edit and delete buttons
+            ${
                 (task.members.find(member => member.user_id == user)  || 
                 members.find(member => member.user_id == user).role === "admin") ? (
                 `<td>

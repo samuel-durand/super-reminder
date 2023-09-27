@@ -7,8 +7,7 @@ const projectDisplay = (project, projectDiv, user) => {
         <td><a href="todolist.php/?listId=${project.id}">${project.name}</a></td>
         <td>${project.description}</td>
         <td>${project.end_date}</td>
-        ${  // find the role of user in project.members
-            // if role == 'admin' then display edit and delete buttons
+        ${
             project.members.find(member => member.user_id == user).role == 'admin' ? (
             `<td>
                 <button id="edit-btn${project.id}" class="btn">Editer</button>
