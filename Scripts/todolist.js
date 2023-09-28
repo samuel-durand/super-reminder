@@ -1,6 +1,6 @@
 const listId = new URLSearchParams(window.location.search).get("listId")
 
-const taskDisplay = (task, container, user, members) => {
+const taskDisplay = (task, container, user, projectRole) => {
         
         const taskDiv = document.createElement('tr');
         taskDiv.classList.add('task');
@@ -10,7 +10,7 @@ const taskDisplay = (task, container, user, members) => {
             <td>${task.end_date}</td>
             ${
                 (task.members.find(member => member.user_id == user)  || 
-                members.find(member => member.user_id == user).role === "admin") ? (
+                projectRole === "admin") ? (
                 `<td>
                     <button id="done-btn${task.id}" class="btn">${task.status ? ("Restorer"):("Terminer")}</button>
                     <button id="edit-btn${task.id}" class="btn">Editer</button>
@@ -53,13 +53,15 @@ const getTasks = () => {
             taskList.innerHTML = '';
             doneTaskList.innerHTML = '';
 
+            let userRole = data.members.find(member => member.user_id == data.user).role;
+
             data.tasks.forEach(task => {
 
                 // Affichage des tâches dans le DOM
                 if (!task.status) {
-                    taskDisplay(task, taskList, data.user, data.members);
+                    taskDisplay(task, taskList, data.user, userRole);
                 } else {
-                    taskDisplay(task, doneTaskList, data.user, data.members);
+                    taskDisplay(task, doneTaskList, data.user, data.userRole);
                 }
             });
         })
