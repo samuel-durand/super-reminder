@@ -58,9 +58,9 @@
                         <div class="inner"></div>
                     </div>
                 </div>
+                </form>
             </div>
             
-        </form>
         <?php
             if(isset($errorMessage)){
                 echo '<p class="errorMessage">'.$errorMessage.'</p>';
@@ -105,14 +105,46 @@
             </table>
         </div>
     </div>
-    <div>
-        <form id="edit-form" class="edit-container">
-            <input type="hidden" id="edit-id" name="edit-id">
-            <input type="text" id="edit-name" name="edit-name" placeholder="Nom">
-            <input type="text" id="edit-description" name="edit-description" placeholder="Description">
-            <input type="date" id="edit-date" name="edit-date" placeholder="Date de fin">
-            <button type="button" id="edit-btn" class="button-85" role="button">Modifier</button>
-        </form>
-    </div>
+
+    <div class="test">
+    <form method="post" id="task-form" class="gradient-border">
+        <input type="hidden" id="edit-id" name="edit-id">
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" id="edit-name" name="edit-name" placeholder="Nom">
+                <label for="edit-name">Nom :</label>
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="text" id="edit-description" name="edit-description" placeholder="Description">
+                <label for="edit-description">Description :</label>
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="input-data">
+                <input type="date" id="edit-date" name="edit-date" placeholder="Date de fin">
+                <label for="edit-date">Date de fin :</label>
+                <div class="underline"></div>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="submit-btn">
+                <div class="input-data">
+                    <button type="button" id="edit-btn" class="button-85" role="button">Modifier</button>
+                    <div class="inner"></div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+            
+
 </body>
 </html>
+
+
+
