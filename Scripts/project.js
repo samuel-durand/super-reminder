@@ -47,8 +47,25 @@ const getProjects = () => {
     });
 };
 
+// ouverture du formulaire d'édition
+const openEditForm = () => {
+
+    const editForm = document.querySelector('.edit-container');
+
+    editForm.classList.remove('hidden');
+};
+
+// fermeture du formulaire d'édition
+const closeEditForm = () => {
+
+    const editForm = document.querySelector('.edit-container');
+
+    editForm.classList.add('hidden');
+}
+
 const fillEditForm = (project) => {
 
+    openEditForm();
     const editName = document.querySelector('#edit-name');
     const editDescription = document.querySelector('#edit-description');
     const editDate = document.querySelector('#edit-date');
@@ -109,6 +126,7 @@ const editProject = (id) => {
         })
     })
     .then(getProjects);
+    closeEditForm();
 };
 
 
@@ -116,8 +134,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     getProjects();
     const addProjectBtn = document.querySelector('#add-btn');
-    addProjectBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+    const cancelBtn = document.querySelector('#cancel-btn');
+
+    addProjectBtn.addEventListener('click', () => {
         addProject();
+    });
+
+    cancelBtn.addEventListener('click', () => {
+        closeEditForm();
     });
 });

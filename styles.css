@@ -31,7 +31,9 @@ body {
   }
 }
 
-
+.hidden {
+  display: none !important;
+}
 
 header {
   color: #fff;
@@ -539,6 +541,23 @@ input[type="submit"]:hover {
   text-align: center;
 }
 
+.edit-container {
+  position: absolute;
+  top: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #0000003b;
+  backdrop-filter: blur(5px);
+}
+
+.edit-form {
+  /* center of the page */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 @media screen and (max-width: 600px) {
   .test {
     margin: 0;
@@ -588,7 +607,6 @@ input[type="submit"]:hover {
   .test {
     margin: 50px auto;
     width: 60%;
-    height: 500px;
   }
 
   #table {

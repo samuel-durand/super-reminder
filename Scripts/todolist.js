@@ -69,6 +69,7 @@ const getTasks = () => {
 
 // fonction de remplissage du formulaire d'édition
 const fillEditForm = (task) => {
+    openEditForm();
     const editName = document.querySelector('#edit-name');
     const editDescription = document.querySelector('#edit-description');
     const editDate = document.querySelector('#edit-date');
@@ -85,6 +86,22 @@ const fillEditForm = (task) => {
     });
 
 };
+
+// ouverture du formulaire d'édition
+const openEditForm = () => {
+
+    const editForm = document.querySelector('.edit-container');
+
+    editForm.classList.remove('hidden');
+};
+
+// fermeture du formulaire d'édition
+const closeEditForm = () => {
+
+    const editForm = document.querySelector('.edit-container');
+
+    editForm.classList.add('hidden');
+}
 
 // edition d'une tâche
 const editTask = (id) => {
@@ -103,6 +120,7 @@ const editTask = (id) => {
         })
     })
     .then(() => getTasks())
+    closeEditForm();
 };
 
 const toggleStatus = (task) => {
@@ -153,8 +171,13 @@ document.addEventListener('DOMContentLoaded', function() {
     getTasks();
 
     const addBtn = document.querySelector('#add-btn');
-    addBtn.addEventListener('click', (e) => {
-        e.preventDefault();
+    const cancelBtn = document.querySelector('#cancel-btn');
+
+    addBtn.addEventListener('click', () => {
         addTask();
+    })
+
+    cancelBtn.addEventListener('click', () => {
+        closeEditForm();
     })
 });
