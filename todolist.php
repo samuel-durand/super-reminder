@@ -7,10 +7,10 @@
 
     if ($_GET["listId"]) {
         $listId = $_GET["listId"];
-        $project = $projectCrud->getProject($listId);
+        $project = $projectCrud->getProjectById($listId);
         $members = $projectCrud->getProjectMembers($listId);
 
-        // find the role that correspond to the user_id
+        // trouver le role de l'utilisateur
         foreach ($members as $member) {
             if($member->user_id == $_SESSION["user_id"]){
                 $role = $member->role;
@@ -43,6 +43,7 @@
                     <div class="member-list"></div>
                     
                     <?php
+                    // Si l'utilisateur est admin, afficher les boutons d'ajout et de suppression de membre
                         if($role == "admin"){
                             echo '<div class="add-member">';
                             echo '<button type="button" id="add-member-btn" class="btn members-btn" role="button">+</button>';
@@ -185,6 +186,7 @@
                         <select id="user">
                             <?php
                                 foreach ($users as $user) {
+                                    // Ne pas afficher l'utilisateur connecté
                                     if($user->id == $_SESSION["user_id"]){
                                         continue;
                                     }

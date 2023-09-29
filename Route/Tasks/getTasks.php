@@ -11,6 +11,7 @@
         $project_id = $_GET["listId"];
         $response["tasks"] = $projectCrud->getProjectTasks($project_id);
         $response["members"] = $projectCrud->getProjectMembers($project_id);
+        // Ajout des membres de la tache dans chaque tache
         foreach($response["tasks"] as $task){
             $task->members = $taskCrud->getTaskMembers($task->id);
         }

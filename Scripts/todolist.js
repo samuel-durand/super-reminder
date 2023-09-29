@@ -2,6 +2,7 @@ import {openEditForm, closeEditForm} from './script.js'
 
 const listId = new URLSearchParams(window.location.search).get("listId")
 
+// Affichage des tâches
 const taskDisplay = (task, container, user, projectRole) => {
         
         const taskDiv = document.createElement('tr');
@@ -11,6 +12,7 @@ const taskDisplay = (task, container, user, projectRole) => {
             <td>${task.description}</td>
             <td>${task.end_date}</td>
             ${
+                // si l'utilisateur est membre de la tâche ou admin du projet, on affiche les boutons d'édition et de suppression
                 (task.members.find(member => member.user_id == user)  || 
                 projectRole === "admin") ? (
                 `<td>
@@ -42,6 +44,7 @@ const taskDisplay = (task, container, user, projectRole) => {
         }
 };
 
+// Affichage des membres du projet
 const memberDisplay = (members) => {
 
     const memberList = document.querySelector('.member-list');
@@ -58,6 +61,7 @@ const memberDisplay = (members) => {
     });
 };
 
+// Récupération des tâches
 const getTasks = () => {
 
     const memberList = document.querySelector('.member-list');
@@ -91,7 +95,7 @@ const getTasks = () => {
         })
 };
 
-// fonction de remplissage du formulaire d'édition
+// Remplissage du formulaire d'édition
 const fillEditForm = (task) => {
     openEditForm();
     const editName = document.querySelector('#edit-name');
@@ -111,6 +115,7 @@ const fillEditForm = (task) => {
 
 };
 
+// Ouverture du formulaire d'édition
 const openMemberForm = () => {
     
         const container = document.querySelector('.modal-container');
@@ -120,6 +125,7 @@ const openMemberForm = () => {
         memberForm.classList.remove('hidden');
 }
 
+// fermeture du formulaire d'édition
 const closeMemberForm = () => {
 
     const container = document.querySelector('.modal-container');
@@ -129,6 +135,7 @@ const closeMemberForm = () => {
     memberForm.classList.add('hidden');
 }
 
+// Ouverture du formulaire de suppression de membre
 const openRemoveMemberForm = () => {
     
     const container = document.querySelector('.modal-container');
@@ -138,6 +145,7 @@ const openRemoveMemberForm = () => {
     memberForm.classList.remove('hidden');
 }
 
+// fermeture du formulaire de suppression de membre
 const closeRemoveMemberForm = () => {
 
 const container = document.querySelector('.modal-container');
@@ -147,6 +155,7 @@ container.classList.add('hidden');
 memberForm.classList.add('hidden');
 }
 
+// Ajout d'un membre
 const inviteMember = () => {
 
     const user = document.querySelector('#user').value;
@@ -163,6 +172,7 @@ const inviteMember = () => {
     closeMemberForm();
 }
 
+// Suppression d'un membre
 const removeMember = () => {
 
         if(!confirm('Voulez-vous vraiment supprimer ce membre ?')) return 0;
@@ -199,6 +209,7 @@ const editTask = (id) => {
     closeEditForm();
 };
 
+// Changement de statut d'une tâche
 const toggleStatus = (task) => {
 
     fetch("./../Route/Tasks/toggleTask.php", {
