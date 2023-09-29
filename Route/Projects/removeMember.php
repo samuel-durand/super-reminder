@@ -1,6 +1,7 @@
 <?php
 
     require_once '../../Class/Project.php';
+    session_start();
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
 

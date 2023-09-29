@@ -73,7 +73,6 @@
             $stmt->execute();
             $user = $stmt->fetch(PDO::FETCH_OBJ);
             if($user){
-
                 if ($user->role != $role){
                     return $this->editProjectMember($projectId, $userId, $role);
                 }
@@ -83,11 +82,15 @@
             $stmt = $this->db->prepare("INSERT INTO project_member (project_id, user_id, role) VALUES (:project_id, :user_id, :role)");
             $stmt->bindParam(':project_id', $projectId);
             $stmt->bindParam(':user_id', $userId);
-            $stmt->bindParam(':role', $role);           
+            $stmt->bindParam(':role', $role);       
             return $stmt->execute();
         }
 
         public function removeProjectMember($projectId, $userId) {
+
+            if ($userId == $_SESSION['user_id']) {
+                return false;
+            }
 
             $stmt = $this->db->prepare("DELETE FROM project_member WHERE project_id = :project_id AND user_id = :user_id");
             $stmt->bindParam(':project_id', $projectId);
