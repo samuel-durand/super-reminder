@@ -1,5 +1,6 @@
 import {openEditForm, closeEditForm} from './script.js'
 
+// Affichage des projets
 const projectDisplay = (project, projectDiv, user) => {
 
     const projectRow = document.createElement('tr');
@@ -10,6 +11,7 @@ const projectDisplay = (project, projectDiv, user) => {
         <td>${project.description}</td>
         <td>${project.end_date}</td>
         ${
+            // si l'utilisateur est admin du projet, on affiche les boutons d'édition et de suppression
             project.members.find(member => member.user_id == user).role == 'admin' ? (
             `<td>
                 <button id="edit-btn${project.id}" class="btn">Editer</button>
@@ -34,6 +36,7 @@ const projectDisplay = (project, projectDiv, user) => {
 
 }
 
+// Récupération des projets
 const getProjects = () => {
 
     const projectDiv = document.querySelector('.current-projects');
@@ -49,6 +52,7 @@ const getProjects = () => {
     });
 };
 
+// Remplissage du formulaire d'édition
 const fillEditForm = (project) => {
 
     openEditForm();
@@ -66,6 +70,7 @@ const fillEditForm = (project) => {
     });
 };
 
+// Suppression d'un projet
 const deleteProject = (id) => {
 
     if(!confirm('Voulez-vous vraiment supprimer ce projet ?')) {
@@ -79,6 +84,7 @@ const deleteProject = (id) => {
     .then(getProjects);
 };
 
+// Ajout d'un projet
 const addProject = () => {
 
     const name = document.querySelector('#name');
@@ -96,6 +102,7 @@ const addProject = () => {
     .then(getProjects);
 };
 
+// Edition d'un projet
 const editProject = (id) => {
 
     const editName = document.querySelector('#edit-name');

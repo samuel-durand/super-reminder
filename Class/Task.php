@@ -8,6 +8,7 @@ class TaskCrud{
         $this->db = $db;
     }
 
+    // Creation d'une tâche
     public function createTask($name, $description, $user_id, $listId, $endDate){
         $stmt = $this->db->prepare("INSERT INTO task (name, description, user_id, list_id, end_date) VALUES (:name, :description, :user_id, :list_id, :end_date)");
         $stmt->bindParam(':name', $name);
@@ -23,12 +24,14 @@ class TaskCrud{
         }
     }
 
+    // Récupération de toutes les tâches
     public function getTasks(){
         $stmt = $this->db->query("SELECT * FROM task");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
         
     }
 
+    // Récupération d'une tâche par son id
     public function getTaskById($taskId){
         $stmt = $this->db->prepare("SELECT * FROM task WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
@@ -36,6 +39,7 @@ class TaskCrud{
         return $stmt->fetch(PDO::FETCH_ASSOC) ?: [];
     }
 
+    // Modification d'une tâche
     public function updateTask($taskId, $name, $description, $listId, $endDate){
         $stmt = $this->db->prepare("UPDATE task SET name = :name, description = :description, list_id = :list_id, end_date = :end_date WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
@@ -46,24 +50,28 @@ class TaskCrud{
         return $stmt->execute();
     }
 
+    // Suppression d'une tâche
     public function deleteTask($taskId){
         $stmt = $this->db->prepare("DELETE FROM task WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
         return $stmt->execute();
     }
 
+    // Changement de statut d'une tâche (finie)
     public function endTask($taskId){
         $stmt = $this->db->prepare("UPDATE task SET status = 1 WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
         return $stmt->execute();
     }
 
+    // Changement de statut d'une tâche (à faire)
     public function restoreTask($taskId){
         $stmt = $this->db->prepare("UPDATE task SET status = 0 WHERE id = :id");
         $stmt->bindParam(':id', $taskId);
         return $stmt->execute();
     }
 
+    // Ajout d'un membre à une tâche
     public function addTaskMember($taskId, $userId, $role = "user"){
         $stmt = $this->db->prepare("INSERT INTO task_member (task_id, user_id, role) VALUES (:task_id, :user_id, :role)");
         $stmt->bindParam(':task_id', $taskId);
@@ -72,6 +80,7 @@ class TaskCrud{
         return $stmt->execute();
     }
 
+    // Recupération des membres d'une tâche
     public function getTaskMembers($taskId){
         $stmt = $this->db->prepare("SELECT role, user_id, users.login
         FROM task_member 
