@@ -15,7 +15,7 @@
             if($member->user_id == $_SESSION["user_id"]){
                 $role = $member->role;
             }
-        }   
+        }
     }
 ?>
 
@@ -185,6 +185,9 @@
                         <select id="user">
                             <?php
                                 foreach ($users as $user) {
+                                    if($user->id == $_SESSION["user_id"]){
+                                        continue;
+                                    }
                                     echo '<option value="'.$user->id.'">'.$user->login.'</option>';
                                 }
                             ?>
@@ -220,6 +223,9 @@
                         <select id="remove-user">
                             <?php
                                 foreach ($members as $user) {
+                                    if($user->user_id == $_SESSION["user_id"]){
+                                        continue;
+                                    }
                                     echo '<option value="'.$user->user_id.'">'.$user->login.'</option>';
                                 }
                             ?>
