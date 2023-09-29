@@ -536,19 +536,41 @@ input[type="submit"]:hover {
 }
 
 .project-header{
+  width: 50% !important;
   margin: auto;
   width: fit-content;
   text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
 
-.edit-container {
-  position: absolute;
+.members {
+  display: flex;
+  align-items: center;
+}
+
+.members-btn {
+  margin-left: 10px;
+}
+
+.modal-container {
+  position: fixed;
   top: 0;
   min-width: 100vw;
   min-height: 100vh;
   background-color: #0000003b;
   backdrop-filter: blur(5px);
 }
+
+.invite-form, .remove-form {
+  /* center of the page */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 
 .edit-form {
   /* center of the page */

@@ -66,6 +66,20 @@
         }
 
         public function addProjectMember($projectId, $userId, $role = "user"){
+
+            $stmt = $this->db->prepare("SELECT * FROM project_member WHERE project_id = :project_id AND user_id = :user_id");
+            $stmt->bindParam(':project_id', $projectId);
+            $stmt->bindParam(':user_id', $userId);
+            $stmt->execute();
+            $user = $stmt->fetch(PDO::FETCH_OBJ);
+            if($user){
+
+                if ($user->role != $role){
+                    return $this->editProjectMember($projectId, $userId, $role);
+                }
+                return false;
+            }
+
             $stmt = $this->db->prepare("INSERT INTO project_member (project_id, user_id, role) VALUES (:project_id, :user_id, :role)");
             $stmt->bindParam(':project_id', $projectId);
             $stmt->bindParam(':user_id', $userId);
@@ -73,8 +87,29 @@
             return $stmt->execute();
         }
 
+        public function removeProjectMember($projectId, $userId) {
+
+            $stmt = $this->db->prepare("DELETE FROM project_member WHERE project_id = :project_id AND user_id = :user_id");
+            $stmt->bindParam(':project_id', $projectId);
+            $stmt->bindParam(':user_id', $userId);
+            return $stmt->execute();
+        }
+
+        public function editProjectMember($projectId, $userId, $role){
+
+            $stmt = $this->db->prepare("UPDATE project_member SET role = :role WHERE project_id = :project_id AND user_id = :user_id");
+            $stmt->bindParam(':project_id', $projectId);
+            $stmt->bindParam(':user_id', $userId);
+            $stmt->bindParam(':role', $role);
+            return $stmt->execute();
+        }
+
         public function getProjectMembers($projectId){
-            $stmt = $this->db->prepare("SELECT * FROM project_member WHERE project_id = :project_id");
+            $stmt = $this->db->prepare("SELECT role, user_id, users.login
+            FROM project_member
+            JOIN users ON project_member.user_id = users.id
+            WHERE project_id = :project_id
+            ");
             $stmt->bindParam(':project_id', $projectId);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_OBJ);
