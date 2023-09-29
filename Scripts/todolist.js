@@ -258,35 +258,35 @@ document.addEventListener('DOMContentLoaded', function() {
     const cancelInviteBtn = document.querySelector('#cancel-invite-btn');
     const cancelRemoveBtn = document.querySelector('#cancel-remove-btn');
 
-    addBtn.addEventListener('click', () => {
+    addBtn && addBtn.addEventListener('click', () => {
         addTask();
     })
 
-    cancelBtn.addEventListener('click', () => {
+    cancelBtn && cancelBtn.addEventListener('click', () => {
         closeEditForm();
     })
 
-    inviteBtn.addEventListener('click', () => {
+    inviteBtn && inviteBtn.addEventListener('click', () => {
         inviteMember();
     })
 
-    addMemberBtn.addEventListener('click', () => {
+    addMemberBtn && addMemberBtn.addEventListener('click', () => {
         openMemberForm();
     })
 
-    cancelInviteBtn.addEventListener('click', () => {
+    cancelInviteBtn && cancelInviteBtn.addEventListener('click', () => {
         closeMemberForm();
     })
 
-    removeBtn.addEventListener('click', () => {
+    removeBtn && removeBtn.addEventListener('click', () => {
         removeMember();
     })
 
-    removeMemberBtn.addEventListener('click', () => {
+    removeMemberBtn && removeMemberBtn.addEventListener('click', () => {
         openRemoveMemberForm();
     })
 
-    cancelRemoveBtn.addEventListener('click', () => {
+    cancelRemoveBtn && cancelRemoveBtn.addEventListener('click', () => {
         closeRemoveMemberForm();
     })
 });
