@@ -299,6 +299,8 @@ form .form-row .input-data {
     /* use position: relative; so that BG is only for .btn */
   position: relative;
   isolation: isolate;
+  width: 100%;
+  margin: 4%;
   display: inline-grid;
   place-content: center;
   padding: .5em 1.5em;
@@ -524,6 +526,7 @@ input[type="submit"]:hover {
   flex: 1;
   display: flex;
   align-items: center;
+  margin: 2%;
   flex-direction: column;
   justify-content: flex-start;
 }
@@ -632,6 +635,7 @@ input[type="submit"]:hover {
   }
 
   #table {
+    margin: 4§;
     width: 60%;
     height: 500px;
   }
