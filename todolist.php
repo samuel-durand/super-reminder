@@ -34,8 +34,8 @@
     <script src="../menu.js"></script>
     <div class="project-header">
         <div>
-            <h1><?php echo $project["name"] ?></h1>
-            <p><?php echo $project["description"] ?></p>
+            <h1><?php echo $project->name ?></h1>
+            <p><?php echo $project->description ?></p>
         </div>
         <div >
                 <h3>Membres du projet</h3>
