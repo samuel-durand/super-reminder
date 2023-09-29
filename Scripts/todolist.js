@@ -1,3 +1,5 @@
+import {openEditForm, closeEditForm} from './script.js'
+
 const listId = new URLSearchParams(window.location.search).get("listId")
 
 const taskDisplay = (task, container, user, projectRole) => {
@@ -40,8 +42,25 @@ const taskDisplay = (task, container, user, projectRole) => {
         }
 };
 
+const memberDisplay = (members) => {
+
+    const memberList = document.querySelector('.member-list');
+    memberList.innerHTML = '';
+
+    members.forEach(member => {
+        const memberDiv = document.createElement('div');
+        memberDiv.classList.add('member');
+        memberDiv.innerHTML = `
+            <p>${member.login}: ${member.role}</p>
+            
+        `;
+        memberList.appendChild(memberDiv);
+    });
+};
+
 const getTasks = () => {
 
+    const memberList = document.querySelector('.member-list');
     const taskList = document.querySelector('.current-tasks');
     const doneTaskList = document.querySelector('.done-tasks');
 
@@ -64,6 +83,11 @@ const getTasks = () => {
                     taskDisplay(task, doneTaskList, data.user, data.userRole);
                 }
             });
+
+            // Affichage des membres dans le DOM
+            if (memberList.innerHTML == '') {
+                memberDisplay(data.members);
+            }
         })
 };
 
@@ -87,20 +111,72 @@ const fillEditForm = (task) => {
 
 };
 
-// ouverture du formulaire d'édition
-const openEditForm = () => {
+const openMemberForm = () => {
+    
+        const container = document.querySelector('.modal-container');
+        const memberForm = document.querySelector('.invite-form');
+    
+        container.classList.remove('hidden');
+        memberForm.classList.remove('hidden');
+}
 
-    const editForm = document.querySelector('.edit-container');
+const closeMemberForm = () => {
 
-    editForm.classList.remove('hidden');
-};
+    const container = document.querySelector('.modal-container');
+    const memberForm = document.querySelector('.invite-form');
 
-// fermeture du formulaire d'édition
-const closeEditForm = () => {
+    container.classList.add('hidden');
+    memberForm.classList.add('hidden');
+}
 
-    const editForm = document.querySelector('.edit-container');
+const openRemoveMemberForm = () => {
+    
+    const container = document.querySelector('.modal-container');
+    const memberForm = document.querySelector('.remove-form');
 
-    editForm.classList.add('hidden');
+    container.classList.remove('hidden');
+    memberForm.classList.remove('hidden');
+}
+
+const closeRemoveMemberForm = () => {
+
+const container = document.querySelector('.modal-container');
+const memberForm = document.querySelector('.remove-form');
+
+container.classList.add('hidden');
+memberForm.classList.add('hidden');
+}
+
+const inviteMember = () => {
+
+    const user = document.querySelector('#user').value;
+    const role = document.querySelector('#role').value;
+
+    fetch("./../Route/Projects/addMember.php", {
+        method: "POST",
+        body: JSON.stringify({
+            userId: user,
+            role: role,
+            projectId: listId
+        })
+    })
+    closeMemberForm();
+}
+
+const removeMember = () => {
+
+        if(!confirm('Voulez-vous vraiment supprimer ce membre ?')) return 0;
+
+        const user = document.querySelector('#remove-user').value;
+        console.log(user);
+        fetch("./../Route/Projects/removeMember.php", {
+            method: "POST",
+            body: JSON.stringify({
+                userId: user,
+                projectId: listId
+            })
+        })
+        closeRemoveMemberForm();
 }
 
 // edition d'une tâche
@@ -173,11 +249,44 @@ document.addEventListener('DOMContentLoaded', function() {
     const addBtn = document.querySelector('#add-btn');
     const cancelBtn = document.querySelector('#cancel-btn');
 
+    const inviteBtn = document.querySelector('#invite-btn');
+    const removeBtn = document.querySelector('#remove-btn');
+
+    const addMemberBtn = document.querySelector('#add-member-btn');
+    const removeMemberBtn = document.querySelector('#remove-member-btn');
+
+    const cancelInviteBtn = document.querySelector('#cancel-invite-btn');
+    const cancelRemoveBtn = document.querySelector('#cancel-remove-btn');
+
     addBtn.addEventListener('click', () => {
         addTask();
     })
 
     cancelBtn.addEventListener('click', () => {
         closeEditForm();
+    })
+
+    inviteBtn.addEventListener('click', () => {
+        inviteMember();
+    })
+
+    addMemberBtn.addEventListener('click', () => {
+        openMemberForm();
+    })
+
+    cancelInviteBtn.addEventListener('click', () => {
+        closeMemberForm();
+    })
+
+    removeBtn.addEventListener('click', () => {
+        removeMember();
+    })
+
+    removeMemberBtn.addEventListener('click', () => {
+        openRemoveMemberForm();
+    })
+
+    cancelRemoveBtn.addEventListener('click', () => {
+        closeRemoveMemberForm();
     })
 });

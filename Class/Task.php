@@ -73,7 +73,11 @@ class TaskCrud{
     }
 
     public function getTaskMembers($taskId){
-        $stmt = $this->db->prepare("SELECT * FROM task_member WHERE task_id = :task_id");
+        $stmt = $this->db->prepare("SELECT role, user_id, users.login
+        FROM task_member 
+        JOIN users ON task_member.user_id = users.id
+        WHERE task_id = :task_id
+        ");
         $stmt->bindParam(':task_id', $taskId);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_OBJ);

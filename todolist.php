@@ -2,11 +2,20 @@
 
     require_once 'Class/Task.php';
     require_once 'Class/Project.php';
+    require_once 'Class/User.php';
     session_start();
 
     if ($_GET["listId"]) {
         $listId = $_GET["listId"];
         $project = $projectCrud->getProject($listId);
+        $members = $projectCrud->getProjectMembers($listId);
+
+        // find the role that correspond to the user_id
+        foreach ($members as $member) {
+            if($member->user_id == $_SESSION["user_id"]){
+                $role = $member->role;
+            }
+        }   
     }
 ?>
 
@@ -18,14 +27,35 @@
     <title>Ajout de tache</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
     <link rel="stylesheet" type="text/css" href="../styles.css">
-    <script type="text/javascript" src="../Scripts/todolist.js"></script>
+    <script type="module" src="../Scripts/todolist.js"></script>
 </head>
 <body>
     <?php include('Header.php');?>
     <script src="../menu.js"></script>
     <div class="project-header">
-        <h1><?php echo $project->name ?></h1>
-        <p><?php echo $project->description ?></p>
+        <div>
+            <h1><?php echo $project->name ?></h1>
+            <p><?php echo $project->description ?></p>
+        </div>
+        <div >
+                <h3>Membres du projet</h3>
+                <div class="members">
+                    <div class="member-list"></div>
+                    
+                    <?php
+                        if($role == "admin"){
+                            echo '<div class="add-member">';
+                            echo '<button type="button" id="add-member-btn" class="btn members-btn" role="button">+</button>';
+                            echo '<div class="inner"></div>';
+                            echo '</div>';
+                            echo '<div class="remove-member">';
+                            echo '<button type="button" id="remove-member-btn" class="btn members-btn" role="button">-</button>';
+                            echo '<div class="inner"></div>';
+                            echo '</div>';
+                        }
+                    ?>
+                </div>
+        </div>
     </div>
     <div class="test">
         <form method="post" id="task-form" class="gradient-border">
@@ -54,7 +84,7 @@
             <div class="form-row">
                 <div class="submit-btn">
                     <div class="input-data">
-                        <button type="button" id="add-btn" class="button-85" role="button">Ajouter</button>
+                        <button type="button" id="add-btn" class="btn" role="button">Ajouter</button>
                         <div class="inner"></div>
                     </div>
                 </div>
@@ -106,8 +136,8 @@
         </div>
     </div>
 
-    <div class="edit-container hidden">
-        <div class="test edit-form">
+    <div class="modal-container hidden">
+        <div class="test edit-form hidden">
             <form method="post" id="task-form" class="gradient-border">
                 <input type="hidden" id="edit-id" name="edit-id">
                 <div class="form-row">
@@ -134,14 +164,77 @@
                 <div class="form-row">
                     <div class="submit-btn">
                         <div class="input-data">
-                            <button type="button" id="edit-btn" class="button-85" role="button">Modifier</button>
+                            <button type="button" id="edit-btn" class="btn" role="button">Modifier</button>
                             <div class="inner"></div>
                         </div>
                     </div>
                     <div class="submit-btn">
                         <div class="input-data">
-                            <button type="button" id="cancel-btn" class="button-85" role="button">Annuler</button>
+                            <button type="button" id="cancel-btn" class="btn" role="button">Annuler</button>
                             <div class="inner"></div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="test invite-form hidden">
+            <form action="">
+                <div class="form-row">
+                    <div class="input-data">
+                        <select id="user">
+                            <?php
+                                foreach ($users as $user) {
+                                    echo '<option value="'.$user->id.'">'.$user->login.'</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="input-data">
+                        <select id="role">
+                            <option value="user">Utilisateur</option>
+                            <option value="admin">Administrateur</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="submit-btn">
+                        <div class="input-data">
+                            <button type="button" id="invite-btn" class="btn" role="button">Inviter</button>
+                        </div>
+                    </div>
+                    <div class="submit-btn">
+                        <div class="input-data">
+                            <button type="button" id="cancel-invite-btn" class="btn" role="button">Annuler</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="test remove-form hidden">
+            <form action="">
+                <div class="form-row">
+                    <div class="input-data">
+                        <select id="remove-user">
+                            <?php
+                                foreach ($members as $user) {
+                                    echo '<option value="'.$user->user_id.'">'.$user->login.'</option>';
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="submit-btn">
+                        <div class="input-data">
+                            <button type="button" id="remove-btn" class="btn" role="button">Retirer</button>
+                        </div>
+                    </div>
+                    <div class="submit-btn">
+                        <div class="input-data">
+                            <button type="button" id="cancel-remove-btn" class="btn" role="button">Annuler</button>
                         </div>
                     </div>
                 </div>

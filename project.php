@@ -10,7 +10,7 @@
     <title>Ajout de tache</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap">
     <link rel="stylesheet" type="text/css" href="styles.css">
-    <script type="text/javascript" src="./Scripts/project.js"></script>
+    <script type="module" src="./Scripts/project.js"></script>
 </head>
 <body>
     <?php include('Header.php');?>
@@ -41,7 +41,7 @@
             <div class="form-row">
                 <div class="submit-btn">
                     <div class="input-data">
-                        <button type="button" id="add-btn" class="button-85" role="button">Ajouter</button>
+                        <button type="button" id="add-btn" class="btn" role="button">Ajouter</button>
                         <div class="inner"></div>
                     </div>
                 </div>
@@ -75,8 +75,8 @@
         </div>
     </div>
     <div>
-    <div class="edit-container hidden">
-        <div class="test edit-form">
+    <div class="modal-container hidden">
+        <div class="test edit-form hidden">
             <form id="edit-form" class="gradient-border"> <!-- Ajoutez la classe "gradient-border" au formulaire -->
                 <input type="hidden" id="edit-id" name="edit-id">
                 <div class="form-row"> <!-- Ajoutez la classe "form-row" à chaque groupe d'entrées -->
@@ -103,13 +103,13 @@
                 <div class="form-row">
                     <div class="submit-btn">
                         <div class="input-data">
-                            <button type="button" id="edit-btn" class="button-85" role="button">Modifier</button>
+                            <button type="button" id="edit-btn" class="btn" role="button">Modifier</button>
                             <div class="inner"></div>
                         </div>
                     </div>
                     <div class="submit-btn">
                         <div class="input-data">
-                            <button type="button" id="cancel-btn" class="button-85" role="button">Annuler</button>
+                            <button type="button" id="cancel-btn" class="btn" role="button">Annuler</button>
                             <div class="inner"></div>
                         </div>
                     </div>
