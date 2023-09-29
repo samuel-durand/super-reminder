@@ -36,7 +36,6 @@ class UserCrud
     {
         $stmt = $this->db->query("SELECT * FROM users");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
-        echo json_encode($user);
 
     }
     

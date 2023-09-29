@@ -102,9 +102,9 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <div class="form-row">
-                <div class="input-data">
-                    <button type="submit" class="btn" name="update">Mettre à jour</button>
-                    <button type="submit" class="btn" name="delete">Supprimer le compte</button>
+                <div class="button-container ">
+                    <button type="submit" class="btn-2" name="update">Mettre à jour</button>
+                    <button type="submit" class="btn-2" name="delete">Supprimer le compte</button>
                     <div class="inner"></div>
                 </div>
             </div>

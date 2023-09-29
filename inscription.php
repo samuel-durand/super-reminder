@@ -1,3 +1,4 @@
+
 <?php
 require_once('Class/User.php');
 
@@ -31,8 +32,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,55 +42,58 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <?php include('Header.php');?>
 <script src="menu.js"></script>
-<div class="test" >
-    <div class="text">Inscription</div>
-    <form method="POST" id="registrationForm" class="gradient-border">
-        <div class="form-row">
-            <div class="input-data">
-                <input type="text" id="login" name="login" required>
-                <label for="login">Login :</label>
-                <div class="underline"></div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="input-data">
-                <input type="text" id="firstname" name="firstname" required>
-                <label for="firstname">Prénom :</label>
-                <div class="underline"></div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="input-data">
-                <input type="text" id="lastname" name="lastname" required>
-                <label for="lastname">Nom de famille :</label>
-                <div class="underline"></div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="input-data">
-                <input type="password" id="password" name="password" required>
-                <label for="password">Mot de passe :</label>
-                <div class="underline"></div>
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="submit-btn">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inscription</title>
+</head>
+<body>
+    <div class="test">
+        <div class="text">Inscription</div>
+        <form method="POST" id="registrationForm" class="gradient-border">
+            <div class="form-row">
                 <div class="input-data">
-                    <button type="submit" class="button-85"  role="button">S'inscrire</button>
-
-                    <div class="inner"></div>
+                    <input type="text" id="login" name="login" required>
+                    <label for="login">Login :</label>
+                    <div class="underline"></div>
                 </div>
             </div>
-        </div>
-    </form>
-
-    <?php
-            if (isset($errorMessage)) {
-                echo '<div style="color: red;">' . $errorMessage . '</div>';
-            }
-            ?>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" id="firstname" name="firstname" required>
+                    <label for="firstname">Prénom :</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="text" id="lastname" name="lastname" required>
+                    <label for="lastname">Nom de famille :</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="input-data">
+                    <input type="password" id="password" name="password" required>
+                    <label for="password">Mot de passe :</label>
+                    <div class="underline"></div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="submit-btn">
+                    <div class="input-data">
+                        <button id="submitButton" class="button-85" role="button">S'inscrire</button>
+                        <div class="inner"></div>
+                    </div>
+                </div>
+            </div>
+        </form>
     </div>
 
-
+  
 </body>
 </html>
+
+
+
+
