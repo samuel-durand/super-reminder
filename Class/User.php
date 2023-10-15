@@ -36,10 +36,9 @@ class UserCrud
     {
         $stmt = $this->db->query("SELECT * FROM users");
         return $stmt->fetchAll(PDO::FETCH_OBJ);
-        echo json_encode($user);
 
     }
-
+    
     public function getUserById($userId, $returnName = false)
     {
         $stmt = $this->db->prepare("SELECT * FROM users WHERE id = :id");

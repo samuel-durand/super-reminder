@@ -62,7 +62,7 @@ if (isset($_SESSION['user_id'])) {
 <body>
 <?php include('Header.php');?>
 <script src="menu.js"></script>
-    <div class="container">
+    <div class="test">
         <?php
         if ($user) {
             echo "Bienvenue, " . $user['login'] . " " . $user['lastname'];
@@ -102,9 +102,9 @@ if (isset($_SESSION['user_id'])) {
             </div>
 
             <div class="form-row">
-                <div class="input-data">
-                    <button type="submit" class="btn" name="update">Mettre à jour</button>
-                    <button type="submit" class="btn" name="delete">Supprimer le compte</button>
+                <div class="button-container ">
+                    <button type="submit" class="btn-2" name="update">Mettre à jour</button>
+                    <button type="submit" class="btn-2" name="delete">Supprimer le compte</button>
                     <div class="inner"></div>
                 </div>
             </div>

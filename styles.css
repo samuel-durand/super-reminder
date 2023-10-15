@@ -1,3 +1,6 @@
+
+
+
 /* Import de la police Google Fonts */
 @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
@@ -12,9 +15,7 @@
 
 /* Styles pour le fond animé */
 body {
-
   min-height: 100vh;
-  padding: 10px;
   font-family: 'Poppins', sans-serif;
   background: linear-gradient(115deg, #56d8e4 10%, #9f01ea 90%);
   background-size: 200% 200%;
@@ -30,11 +31,8 @@ body {
   }
 }
 
-
-/* Dans votre fichier styles.css */
-body {
-  margin: 0;
-  padding: 0;
+.hidden {
+  display: none !important;
 }
 
 header {
@@ -64,7 +62,6 @@ header {
   height: 3px;
   margin: 3px 0;
   transition: 0.4s;
-  display: ; /* Assurer que les spans se comportent comme des blocs */
 }
 
 /* Styles pour le menu burger actif */
@@ -81,20 +78,21 @@ header {
 }
 
 .sidebar {
-  background: rgba(255, 255, 255, 0.2); /* Couleur de fond transparente */
-  backdrop-filter: blur(10px); /* Effet de flou pour le verre */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  background: rgba(0, 0, 0, 0.2); 
+  backdrop-filter: blur(10px); 
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   color: #fff;
   width: 250px;
   height: 100%;
   position: fixed;
   top: 0;
-  left: -250px; /* Caché initialement à gauche */
+  left: -300px; /* Caché initialement à gauche */
   transition: 0.4s;
+  z-index: 9999;
 }
 
 .sidebar.active {
-  left: 0; /* Afficher la barre latérale lorsque active */
+  left: 0; 
 }
 
 
@@ -114,26 +112,25 @@ header {
 }
 
 
-/* Styles pour le conteneur du formulaire */
-.container {
-  max-width: 800px;
+
+
+/* Styles de base pour le conteneur */
+.test {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+   margin:  auto;
   background: #fff;
-  position: relative;
-  overflow: hidden;
-  width: 800px;
-  padding: 25px 40px 10px 40px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   border: 2px solid transparent;
-  position: absolute;
-  top: 50%; /* Position verticale au milieu de la page */
-  left: 50%; /* Position horizontale au milieu de la page */
-  transform: translate(-50%, -50%); /* Centrer le contenu */
-  overflow: hidden;
+
+
+
 }
 
 
 
-.container .text {
+.test .text {
   text-align: center;
   font-size: 41px;
   font-weight: 600;
@@ -143,20 +140,20 @@ header {
   -webkit-text-fill-color: transparent;
 }
 
-.container form {
-  padding: 30px 0 0 0;
+.test form {
+  padding: 30px 0 0;
 }
 
 /* Styles pour les champs de formulaire */
-.container form .form-row {
+.test form .form-row {
   display: flex;
+
   margin: 32px 0;
 }
 
 form .form-row .input-data {
   width: 100%;
-  height: 40px;
-  margin: 0 20px;
+  margin: 0 20px ;
   position: relative;
 }
 
@@ -222,8 +219,6 @@ form .form-row .input-data {
 .textarea textarea:valid ~ .underline:before {
   transform: scale(1);
 }
-
-
 
 /* CSS */
 .button-85 {
@@ -304,6 +299,8 @@ form .form-row .input-data {
     /* use position: relative; so that BG is only for .btn */
   position: relative;
   isolation: isolate;
+  width: 100%;
+  margin: 4%;
   display: inline-grid;
   place-content: center;
   padding: .5em 1.5em;
@@ -414,19 +411,150 @@ form .form-row .input-data {
 }
 
 
+/*button*/
+
+
+.button-container {
+  display: flex; 
+  justify-content: center; 
+  width: 100%; 
+}
+
+.btn-2 {
+  --border-color: linear-gradient(-45deg, #ffae00, #7e03aa, #00fffb);
+  --border-width: .125em;
+  --curve-size: .5em;
+  --blur: 30px;
+  --bg: #080312;
+  --color: #afffff;
+  color: var(--color);
+    /* use position: relative; so that BG is only for .btn */
+    position: relative;
+  isolation: isolate;
+  width: 40%;
+  margin: 2%;
+  display: flex;
+  justify-content: center;
+  place-content: center;
+  padding: .5em 1.5em;
+  font-size: 17px;
+  border: 0;
+  text-transform: uppercase;
+  box-shadow: 10px 10px 20px rgba(0, 0, 0, .6);
+  clip-path: polygon(
+            /* Top-left */
+            0% var(--curve-size),
+
+            var(--curve-size) 0,
+            /* top-right */
+            100% 0,
+            100% calc(100% - var(--curve-size)),
+
+            /* bottom-right 1 */
+            calc(100% - var(--curve-size)) 100%,
+            /* bottom-right 2 */
+            0 100%);
+  transition: color 250ms;
+}
+
+.btn-2::after,
+.btn-2::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.btn-2::before {
+  background: var(--border-color);
+  background-size: 300% 300%;
+  animation: move-bg7234 5s ease infinite;
+  z-index: -2;
+}
+
+@keyframes move-bg7234 {
+  0% {
+    background-position: 31% 0%
+  }
+
+  50% {
+    background-position: 70% 100%
+  }
+
+  100% {
+    background-position: 31% 0%
+  }
+}
+
+.btn-2::after {
+  background: var(--bg);
+  z-index: -1;
+  clip-path: polygon(
+            /* Top-left */
+            var(--border-width) 
+            calc(var(--curve-size) + var(--border-width) * .5),
+
+            calc(var(--curve-size) + var(--border-width) * .5) var(--border-width),
+
+            /* top-right */
+            calc(100% - var(--border-width)) 
+            var(--border-width),
+
+            calc(100% - var(--border-width)) 
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+
+            /* bottom-right 1 */
+            calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) calc(100% - var(--border-width)),
+            /* bottom-right 2 */
+            var(--border-width) calc(100% - var(--border-width)));
+  transition: clip-path 500ms;
+}
+
+.btn-2:where(:hover, :focus)::after {
+  clip-path: polygon(
+                /* Top-left */
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5)),
+    
+                calc(100% - var(--border-width))
+
+                var(--border-width),
+    
+                /* top-right */
+                calc(100% - var(--border-width))
+
+                 var(--border-width),
+    
+                calc(100% - var(--border-width)) 
+
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)),
+    
+                /* bottom-right 1 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * .5)) 
+                calc(100% - var(--border-width)),
+
+                /* bottom-right 2 */
+                calc(100% - calc(var(--curve-size) + var(--border-width) * 0.5))
+                calc(100% - var(--border-width)));
+  transition: 200ms;
+}
+
+.btn-2:where(:hover, :focus) {
+  color: #fff;
+}
 
 
 
 
 
   .index {
-    background: rgba(255, 255, 255, 0.2); /* Couleur de fond transparente */
-    backdrop-filter: blur(10px); /* Effet de flou pour le verre */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    background: rgba(255, 255, 255, 0.2); 
+    backdrop-filter: blur(10px); 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
   padding: 20px;
   border-radius: 10px;
-   max-width: 600px; /* Pour limiter la largeur du conteneur */
-  margin: 200px auto; /* Pour centrer le conteneur */
+   max-width: 600px; 
+  margin: 200px auto; 
           }
 /* Styles pour le titre */
 #features-title {
@@ -470,21 +598,20 @@ form .form-row .input-data {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 80%; /* Largeur du conteneur */
-  margin: 0 auto; /* Centrer le conteneur horizontalement */
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0 auto; 
   padding: 20px;
-  background: white;
-  border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure avec transparence */
-  border-radius: 10px; /* Coins arrondis */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
-  backdrop-filter: blur(10px); /* Flou du fond pour effet de verre */
-  text-align: center; /* Centrer le contenu à l'intérieur du conteneur */
+
+  backdrop-filter: blur(10px); 
+  text-align: center; 
 }
 
 /* Styles pour la table */
 #table {
   width: 40%;
   border-collapse: collapse;
+  margin: 50px auto;
   background: transparent;
   text-align: left; /* Aligner le texte à gauche dans la table */
 }
@@ -518,48 +645,132 @@ input[type="submit"]:hover {
   background: rgba(255, 0, 0, 1); /* Couleur de fond rouge plus intense au survol */
 }
 
-/*player */
-
-
-
-.music-player {
-  max-width: 300px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #f0f0f0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+.todolist-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
-.player-controls {
-  margin-top: 10px;
+.tasks-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin: 2%;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-button {
-  background-color: #007BFF;
-  color: #fff;
-  border: none;
-  padding: 10px 20px;
-  margin: 5px;
-  cursor: pointer;
+.projectlist-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
-.progress-bar {
-  height: 5px;
-  background-color: #ccc;
-  margin-top: 10px;
+.project-header{
+  width: 50% !important;
+  margin: auto;
+  width: fit-content;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
 }
 
-.progress {
-  height: 100%;
-  width: 0;
-  background-color: #007BFF;
+.members {
+  display: flex;
+  align-items: center;
 }
 
-.track-info {
-  margin-top: 10px;
+.members-btn {
+  margin-left: 10px;
 }
 
-#current-time, #duration {
-  font-weight: bold;
+.modal-container {
+  position: fixed;
+  top: 0;
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: #0000003b;
+  backdrop-filter: blur(5px);
 }
+
+.invite-form, .remove-form {
+  /* center of the page */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+.edit-form {
+  /* center of the page */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@media screen and (max-width: 600px) {
+  .test {
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 0;
+  }
+
+  #table {
+    width: 100%;
+  }
+
+  th, td {
+    width: 100%;
+  }
+
+  sidebar {
+    width: 100%;
+  }
+}
+
+
+@media screen and (min-width: 600px) {
+  .test {
+    margin: 0 auto;
+    width: 100%;
+  }
+
+
+
+  #table {
+    width: 100%;
+    height: 500px;
+  }
+
+  th, td {
+    flex-grow: 1;
+    flex-basis: 200;
+    width: 100%;
+  }
+
+
+}
+
+
+@media screen and (min-width: 1000px) {
+  .test {
+    margin: 50px auto;
+    width: 60%;
+  }
+
+  #table {
+    margin: 4§;
+    width: 60%;
+    height: 500px;
+  }
+
+  th, td {
+    width: 60%;
+  }
+}
+
